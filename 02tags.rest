@@ -1,0 +1,34 @@
+### GET - pobierz wszystkie dane surowe
+GET http://localhost:3000/api/tags/raw HTTP/1.1
+
+
+
+###GET - pobierz wszystkie zoobiekcone
+GET http://localhost:3000/api/tags HTTP/1.1
+
+
+### GET - pobierz jeden element wg id
+//GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
+# GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
+GET http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46  HTTP/1.1
+
+
+### POST - nowe dane
+
+# POST http://localhost:3000/api/ HTTP/1.1
+
+
+
+### DELETE - usuń wg id
+DELETE http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46 HTTP/1.1
+
+
+
+### PATCH - updatuj wg id
+POST  http://localhost:3000/api/tags HTTP/1.1
+content-type: application/json
+
+{   
+  "name":"#nowytag2",
+  "popularity": 1000000    
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+  </head>
+  <style>
+    #circle {
+      border-radius: 50% 50%;
+      background-color: blueviolet;
+      height: 100px;
+      width: 100px;
+      margin-top: 20px;
+    }
+    #indexes {
+      width: 100px;
+      text-align: center;
+      background-color: aqua;
+    }
+  </style>
+
+  <body>
+
+    <h1>Witaj w pliku index.html</h1>
+
+    <button
+    type="button"
+    id="add"
+    onclick="fetchPost('/add', 
+  { 
+  name: document.querySelector('#name').value, 
+  color: document.querySelector('#color').value
+  })"
+  >
+    Add
+  </button>
+  <button
+    type="button"
+    id="add"
+    onclick="fetchPost('/addMany', {
+      name: document.querySelector('#name').value, 
+      color: document.querySelector('#color').value 
+  } )"
+  >
+    Add many
+  </button>
+  <button
+    type="button"
+    id="add"
+    onclick="fetchPost('/delete',  parseInt(document.querySelector('#indexes').value) )"
+  >
+    Delete
+  </button>
+  <button
+    type="button"
+    id="add"
+    onclick="fetchPost('/update',  parseInt(document.querySelector('#indexes').value))"
+  >
+    Update
+  </button>
+  <button type="button" id="add" onclick="fetchPost('/getAll' )">Get</button>
+  <button type="button" id="add" onclick="fetchPost('/deleteAll')">Delete all</button>
+</br>
+
+    <select name="name" id="name" size="4">
+      <option value="kot">kot</option>
+      <option value="pies">pies</option>
+      <option value="krowa">krowa</option>
+      <option value="szczur">szczur</option>
+      <option value="jenot">jenot</option>
+    </select>
+    <select name="color" id="color" size="4">
+      <option value="czarny">czarny</option>
+      <option value="żółty">żółty</option>
+      <option value="niebieski">niebieski</option>
+      <option value="zielony">zielony</option>
+    </select>
+
+    <select id="indexes" size="4"></select>
+
+   
+    <pre id="responseContainer"></pre>
+  </body>
+
+  <script>
+    const circle = document.querySelector("#circle");
+    const responseContainer = document.querySelector("#responseContainer");
+    const indexes = document.querySelector("#indexes")
+    console.log(circle);
+    const fetchPost = async (endPoint, data) => {
+      console.log(endPoint);
+      console.log(data);
+
+      // console.log(data);
+      const options = {
+        method: "POST",
+        body: JSON.stringify(data) ?? null,
+      };
+      console.log(options);
+      const response = await fetch(endPoint, options);
+     
+      if (!response.ok) {
+        return response.status;
+      } else {
+        
+        console.log("Success");
+        const res = await response.json()
+        showID(res.arr)
+        // if (res?.option == "getAll") {
+          alert(JSON.stringify(res?.data, null, 5))
+        // }
+        console.log(res.arr);
+        
+        console.log(res);
+        responseContainer.textContent = ""
+        responseContainer.textContent = JSON.stringify(JSON.parse(res.arr), null, 5)
+        //return await response.text(); // lub response.json()
+      }
+    };
+    function showID(arr) {
+      indexes.innerHTML = ""
+      arr = JSON.parse(arr)
+      for (const i of arr) {
+        console.log(i);
+        const option = document.createElement("option")
+        option.value = i.id
+        option.textContent = i.id
+        indexes.append(option)
+      }
+
+    }
+    // circle.addEventListener("click", async () => {
+    //     const x = await fetchPost()
+    //     const test = JSON.parse(x)
+    //     console.log(test);
+    //     alert(JSON.stringify(test, null, 5))
+    //     responseContainer.textContent = JSON.stringify(test, null, 5)
+    // })
+  </script>
+</html>
