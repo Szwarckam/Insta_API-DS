@@ -19,8 +19,9 @@ class Photo {
   remove() {
     photos = photos.filter((el) => el.id != this.id);
   }
-  updateHistory(status) {
-    this.history.push({ status: status, timestamp: Date.now() });
+  updateHistory(status, url) {
+    this.lastChange = status
+    this.history.push({ status: status, timestamp: Date.now(), url: url });
   }
 }
 
