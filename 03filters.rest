@@ -1,0 +1,39 @@
+### GET - pobranie danych meta wybranego zdjęcia
+GET http://localhost:3000/api/filters/metadata/77dc6efb-71e5-4d90-a593-e77d66ecd412 HTTP/1.1
+
+
+
+###GET - pobranie pliku zdjęcia (nie jsona zdjęcia) wg id
+GET http://localhost:3000/api/getimage/1681671564412 HTTP/1.1
+
+
+### GET - pobranie pliku przefiltrowanego zdjęcia (nie jsona zdjęcia) wg id i nazwy filtra
+GET /api/getimage/1681671564412/filter/tint HTTP/1.1
+### GET - pobierz jeden element wg id
+//GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
+# GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
+GET http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46  HTTP/1.1
+
+
+### POST - nowe dane
+
+# POST http://localhost:3000/api/ HTTP/1.1
+
+
+
+### DELETE - usuń wg id
+DELETE http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46 HTTP/1.1
+
+
+
+### PATCH /api/filters
+PATCH  http://localhost:3000/api/filters HTTP/1.1
+content-type: application/json
+
+{   
+  "id":"d06f8335-3220-41b1-96b2-8698b09dcd9c",
+  "filter":"grayscale",
+  "size": {"width": 600, "height": 600},
+  "color": {"r": 0 ,"g": 0, "b": 0},
+  "angle": 90    
+}
