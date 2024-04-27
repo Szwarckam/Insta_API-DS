@@ -14,14 +14,18 @@ class Photo {
         timestamp: Date.now(),
       },
     ];
+    this.tags = [];
     // this.completed = false;
   }
   remove() {
     photos = photos.filter((el) => el.id != this.id);
   }
   updateHistory(status, url) {
-    this.lastChange = status
+    this.lastChange = status;
     this.history.push({ status: status, timestamp: Date.now(), url: url });
+  }
+  addTag(name) {
+    this.tags.push({ name: name });
   }
 }
 

@@ -5,7 +5,7 @@ GET http://localhost:3000/api/photos HTTP/1.1
 ### GET - pobierz jeden element wg id
 //GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
 # GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
-GET http://localhost:3000/api/photos/39c5f68b-431c-48be-9f1a-f18c7f42ac21  HTTP/1.1
+GET http://localhost:3000/api/photos/d1fb22b1-4015-4006-ba2a-d606ea20cd86  HTTP/1.1
 
 
 ### POST - nowe dane
@@ -30,7 +30,7 @@ user_album
 
 
 ### DELETE - usuń wg id
-DELETE http://localhost:3000/api/photos/39c5f68b-431c-48be-9f1a-f18c7f42ac21 HTTP/1.1
+DELETE http://localhost:3000/api/photos/d1fb22b1-4015-4006-ba2a-d606ea20cd86 HTTP/1.1
 
 
 
@@ -39,6 +39,6 @@ PATCH  http://localhost:3000/api/photos HTTP/1.1
 content-type: application/json
 
 {
-  "id": "a35dd55a-8ee8-447d-b770-01f3f034a06c",    
+  "id": "d1fb22b1-4015-4006-ba2a-d606ea20cd86",    
   "status": "łatwiutkie22"
 }

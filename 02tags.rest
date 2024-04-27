@@ -8,27 +8,43 @@ GET http://localhost:3000/api/tags HTTP/1.1
 
 
 ### GET - pobierz jeden element wg id
-//GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
-# GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
-GET http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46  HTTP/1.1
+GET http://localhost:3000/api/tags/44aa0055-ebe4-4a79-9bdd-08ef6b5b9c73  HTTP/1.1
 
 
-### POST - nowe dane
-
-# POST http://localhost:3000/api/ HTTP/1.1
+### GET - pobranie tagów jednego zdjęcia wg id
+GET http://localhost:3000/api/photos/tags/44cf080d-f38b-47fc-a806-4a3f979aa08b HTTP/1.1
 
 
 
-### DELETE - usuń wg id
-DELETE http://localhost:3000/api/tags/6ac35a42-d049-4de7-b4ff-cf286f258c46 HTTP/1.1
-
-
-
-### PATCH - updatuj wg id
+### POST - dodanie nowego tagu
 POST  http://localhost:3000/api/tags HTTP/1.1
 content-type: application/json
 
 {   
-  "name":"#nowytag2",
+  "name":"tes123",
   "popularity": 1000000    
 }
+
+
+### PATCH - dodanie jednego tagu  wg id
+
+PATCH  http://localhost:3000/api/photos/tags HTTP/1.1
+content-type: application/json
+
+{
+  "id": "b349e92b-c43c-4358-a0ca-098845246337",    
+  "tags": "#cute"
+}
+
+
+
+### PATCH - dodanie wielu tagów  wg id
+
+PATCH  http://localhost:3000/api/photos/tags HTTP/1.1
+content-type: application/json
+
+{
+  "id": "44cf080d-f38b-47fc-a806-4a3f979aa08b",    
+  "tags": ["#cute", "#test123", "#giga"]
+}
+
