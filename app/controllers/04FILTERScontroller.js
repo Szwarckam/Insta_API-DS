@@ -10,13 +10,19 @@ const filtersController = {
       const photoToFilter = photos.find((el) => el.id == data.id);
       console.log("photoToFilter", photoToFilter);
       if (photoToFilter) {
-        const splited = photoToFilter.url.substring(
-          photoToFilter.url.lastIndexOf("\\"),
-          photoToFilter.url.length.split(".")[0]
-        );
+        const splited = photoToFilter.url.split("\\").pop().split(".");
+        // const name = splited[]
         console.log(splited);
-        const newPath = path.join(__dirname, "upload", photoToFilter.album, "test.png");
+        let newPath = path.join(__dirname, "upload", photoToFilter.album, `${splited[0]}-${data.filter}.${splited[1]}`);
         console.log(newPath);
+        if (photoToFilter.history.find((el) => el.status == data.filter)) {
+          newPath = path.join(
+            __dirname,
+            "upload",
+            photoToFilter.album,
+            `${splited[0]}-${data.filter}_${Date.now()}.${splited[1]}`
+          );
+        }
         switch (data.filter) {
           case "grayscale":
             console.log(photoToFilter.url.split("."));
@@ -24,12 +30,88 @@ const filtersController = {
             photoToFilter.updateHistory(data.filter, newPath);
             resolve(photoToFilter);
             break;
-
+          case "rotate":
+            if (data.angle) {
+              await sharp(photoToFilter.url).rotate(parseInt(data.angle)).toFile(newPath);
+              photoToFilter.updateHistory(data.filter, newPath);
+              resolve(photoToFilter);
+            } else {
+              reject("Angle needed.");
+            }
+            break;
+          case "resize":
+            if (data.size?.w && data.size?.h) {
+              await sharp(photoToFilter.url)
+                .resize({
+                  width: data.size.w,
+                  height: data.size.h,
+                })
+                .toFile(newPath);
+              photoToFilter.updateHistory(data.filter, newPath);
+              resolve(photoToFilter);
+              break;
+            } else {
+              reject("Invalid data.");
+            }
+          case "reformat":
+            if (data.format) {
+              newPath = path.join(
+                __dirname,
+                "upload",
+                photoToFilter.album,
+                `${splited[0]}-${data.filter}.${data.format}`
+              );
+              await sharp(photoToFilter.url).toFormat(data.format).toFile(newPath);
+              photoToFilter.updateHistory(data.filter, newPath);
+              resolve(photoToFilter);
+              break;
+            } else {
+              reject("Invalid data.");
+            }
+            break;
+          case "crop":
+            if (data.size?.w && data.size?.h && data.size?.l && data.size?.t) {
+              await sharp(photoToFilter.url)
+                .extract({
+                  width: parseInt(data.size?.w),
+                  height: parseInt(data.size?.h),
+                  left: parseInt(data.size?.l),
+                  top: parseInt(data.size?.t),
+                })
+                .toFile(newPath);
+              photoToFilter.updateHistory(data.filter, newPath);
+              resolve(photoToFilter);
+            } else {
+              reject("Invalid data.");
+            }
+            break;
+          case "flip":
+            await sharp(photoToFilter.url).flip().toFile(newPath);
+            photoToFilter.updateHistory(data.filter, newPath);
+            resolve(photoToFilter);
+            break;
+          case "negate":
+            await sharp(photoToFilter.url).negate().toFile(newPath);
+            photoToFilter.updateHistory(data.filter, newPath);
+            resolve(photoToFilter);
+            break;
+          case "tint":
+            if (data.color?.r >= 0 && data.color?.b >= 0 && data.color?.g >= 0) {
+              await sharp(photoToFilter.url)
+                .tint({ r: data.color.r, g: data.color.g, b: data.color.b })
+                .toFile(newPath);
+              photoToFilter.updateHistory(data.filter, newPath);
+              resolve(photoToFilter);
+            } else {
+              reject("Invalid data.");
+            }
+            break;
           default:
+            reject("Invalid filter.");
             break;
         }
       } else {
-        reject("Nie udało się dodać");
+        reject(`Photo with id: ${data.id} and filter: ${data.filter} exists`);
       }
     });
   },

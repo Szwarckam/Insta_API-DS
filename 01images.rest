@@ -8,6 +8,16 @@ GET http://localhost:3000/api/photos HTTP/1.1
 GET http://localhost:3000/api/photos/d1fb22b1-4015-4006-ba2a-d606ea20cd86  HTTP/1.1
 
 
+
+### GET - pobranie zdjęcia z serwera wg id
+GET http://localhost:3000/api/getimage/b3eaeb82-a0a6-4316-b95d-a0badded57cd  HTTP/1.1
+
+
+### GET - pobranie przefiltrowanego zdjęcia z serwera wg id
+GET http://localhost:3000/api/getimage/b3eaeb82-a0a6-4316-b95d-a0badded57cd/filter/rotate  HTTP/1.1
+
+
+
 ### POST - nowe dane
 
 # POST http://localhost:3000/api/ HTTP/1.1
@@ -18,13 +28,13 @@ Content-Type: multipart/form-data; boundary=----FormBoundary1234
 Content-Disposition: form-data; name="file"; filename="input1222.png"
 Content-Type: image/png
 
-< ./logo.png
+< ./logo2.png
 
 ------FormBoundary1234
 Content-Disposition: form-data; name="album"
 Content-Type: text/plain
 
-user_album
+user_22222album
 ------FormBoundary1234
 
 
@@ -42,3 +52,6 @@ content-type: application/json
   "id": "d1fb22b1-4015-4006-ba2a-d606ea20cd86",    
   "status": "łatwiutkie22"
 }
+
+
+

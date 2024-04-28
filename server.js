@@ -5,7 +5,7 @@ import filtersRouter from "./app/routers/_filterRouter.js";
 createServer(async (req, res) => {
   //images
 
-  if (req.url.search("/api/photos") != -1) {
+  if (req.url.search("/api/photos") != -1 || req.url.search("/api/getimage") != -1) {
     await imageRouter(req, res);
   }
 
@@ -16,5 +16,8 @@ createServer(async (req, res) => {
   //filters
   else if (req.url.search("/api/filters") != -1) {
     await filtersRouter(req, res);
+  } else {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ status: "404", message: `Invalid root` }));
   }
 }).listen(3000, () => console.log("listen on 3000"));

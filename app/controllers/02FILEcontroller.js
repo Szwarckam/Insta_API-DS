@@ -51,5 +51,34 @@ const fileController = {
     });
   },
   delete: (id) => {},
+  getOne: (id) => {
+    return new Promise((resolve, reject) => {
+      const photo = photos.find((el) => el.id == id);
+      if (photo) {
+        const splited = photo.url.split("\\").pop().split(".");
+        const data = fs.readFileSync(photo.url);
+        resolve({ file: data, ext: splited[1] });
+      } else {
+        reject(`Photo with id: ${id}, not found`);
+      }
+    });
+  },
+  getFiltredOne: (id, filter) => {
+    return new Promise((resolve, reject) => {
+      const photo = photos.find((el) => el.id == id);
+      if (photo) {
+        const filteredPhoto = photo.history.find((el) => el.status == filter);
+        if (filteredPhoto) {
+          const splited = filteredPhoto.url.split("\\").pop().split(".");
+          const data = fs.readFileSync(filteredPhoto.url);
+          resolve({ file: data, ext: splited[1] });
+        } else {
+          reject(`Photo with id: ${id}, dont have filter: ${filter}`);
+        }
+      } else {
+        reject(`Photo with id: ${id}, doesn't exists`);
+      }
+    });
+  },
 };
 export default fileController;

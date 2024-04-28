@@ -65,15 +65,6 @@ const tagRouter = async (request, response) => {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: err }, null, 5));
     }
-
-    //   const addJson = await tagsController.add(tagData);
-    //   console.log(addJson);
-    //   response.writeHead(201, { "Content-Type": "application/json" });
-    //   response.end(JSON.stringify({ status: 201, tag: tagData }, null, 5));
-    // } catch {
-    //   response.writeHead(500, { "Content-Type": "application/json" });
-    //   response.end(JSON.stringify({ status: 500, message: `Failed to add tag` }, null, 5));
-    // }
   } else if (request.url.match(/api\/tags\/(\d+)$/) && request.method == "DELETE") {
     console.log("Usuwanie tagu");
   } else if (request.url == "/api/tags" && request.method == "PATCH") {

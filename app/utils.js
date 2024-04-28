@@ -16,4 +16,13 @@ const getRequestData = async (req) => {
     }
   });
 };
+
+// const filters = {
+//   grayscale: async (ogPath, newPath) => {
+//     await sharp(photoToFilter.url).grayscale().toFile(newPath);
+//     photoToFilter.updateHistory(data.filter, newPath);
+//     resolve(photoToFilter);
+//   },
+// };
 export default getRequestData;
+// export default { getRequestData, filters };

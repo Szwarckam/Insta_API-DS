@@ -19,20 +19,20 @@ const tagsController = {
       }
     });
   },
-  delete: (id) => {
-    // return new Promise((resolve, reject) => {
-    //   const delPhoto = photos.find((el) => el.id == id);
-    //   console.log(delPhoto);
-    //   if (delPhoto) {
-    //     console.log("Do usunięcia");
-    //     delPhoto.remove();
-    //     console.log(photos);
-    //     resolve(delPhoto);
-    //   } else {
-    //     reject(`Can't delete the tag`);
-    //   }
-    // });
-  },
+  // delete: (id) => {
+  // return new Promise((resolve, reject) => {
+  //   const delPhoto = photos.find((el) => el.id == id);
+  //   console.log(delPhoto);
+  //   if (delPhoto) {
+  //     console.log("Do usunięcia");
+  //     delPhoto.remove();
+  //     console.log(photos);
+  //     resolve(delPhoto);
+  //   } else {
+  //     reject(`Can't delete the tag`);
+  //   }
+  // });
+  // },
 
   update: (data) => {
     // const id = data.id;

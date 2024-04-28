@@ -135,6 +135,60 @@ const imageRouter = async (request, response) => {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: `Photo with id: ${id}, not found` }, null, 5));
     }
+  } else if (request.url == "/api/photos/tags" && request.method == "PATCH") {
+    //PATCH dodawanie tagu do zdjęcia
+    console.log("dodawanie tagu do zdjęcia");
+    let data = await getRequestData(request);
+    data = JSON.parse(data);
+    console.log(data);
+    try {
+      const updatedPhoto = await jsonController.updateTag(data);
+      console.log(updatedPhoto);
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 200, file: updatedPhoto }, null, 5));
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+    }
+  } else if (
+    request.url.match(
+      /\/api\/getimage\/([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$)/
+    ) &&
+    request.method == "GET"
+  ) {
+    //GET specific ones tags
+    console.log("Pobranie zdjęcia po id");
+    const id = request.url.split("/")[3];
+    try {
+      const photo = await fileController.getOne(id);
+      console.log(photo);
+      response.writeHead(200, { "Content-Type": `image/${photo.ext}` });
+      response.end(photo.file);
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: `Photo with id: ${id}, not found` }, null, 5));
+    }
+  } else if (
+    request.url.match(
+      /\/api\/getimage\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\/filter\/([a-zA-Z0-9_-]+)/
+    ) &&
+    request.method == "GET"
+  ) {
+    //GET specific ones tags
+    console.log("Pobranie po przefiltrowaniu zdjęcia po id");
+    const id = request.url.split("/")[3];
+    const filter = request.url.split("/")[5];
+    console.log(id);
+    console.log(filter);
+    try {
+      const photo = await fileController.getFiltredOne(id, filter);
+      console.log(photo);
+      response.writeHead(200, { "Content-Type": `image/${photo.ext}` });
+      response.end(photo.file);
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+    }
   } else {
     response.writeHead(404, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "404", message: `Invalid root` }));

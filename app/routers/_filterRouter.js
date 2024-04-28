@@ -43,7 +43,10 @@ const filtersRouter = async (request, response) => {
       console.log(filtredPhoto);
       response.writeHead(200, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 200, file: filtredPhoto }, null, 5));
-    } catch (err) {}
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: "404", message: err }));
+    }
   } else {
     response.writeHead(404, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "404", message: `Invalid root` }));
