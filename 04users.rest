@@ -1,0 +1,15 @@
+### GET - pobranie danych meta wybranego zdjęcia
+GET http://localhost:3000/api/user/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbTJlQGVtYWlsLnBsIiwiaWF0IjoxNzE0MzgwNzE2LCJleHAiOjE3MTQzODA3NDZ9.-3oD6U7KA0vkFrfz1oyNOwGWpNF2gfGj-XqDwgdETXk HTTP/1.1
+
+
+
+### PATCH /api/filters
+POST http://localhost:3000/api/user/register HTTP/1.1
+content-type: application/json
+
+{    
+   "name": "name",
+   "lastName": "lastName",
+   "email":"nam2e@email.pl",
+   "password":"zaq1@WSX"
+}

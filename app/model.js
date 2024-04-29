@@ -1,6 +1,6 @@
 import { FORMERR } from "dns";
 import { v4 as uuidv4 } from "uuid";
-
+import createToken from "./auth.js";
 class Photo {
   constructor(album, ogName, url) {
     this.id = uuidv4();
@@ -83,4 +83,20 @@ let rawTags = [
 ];
 
 convertTags();
-export { photos, Photo, rawTags, Tag, convertedTags, convertTags };
+
+
+// Użytkownicy
+
+let users = []
+
+class User {
+  constructor(name, lastName, email, password) {
+    this.name = name;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.auth = false;
+  }
+
+}
+export { photos, Photo, rawTags, Tag, convertedTags, convertTags, users, User };

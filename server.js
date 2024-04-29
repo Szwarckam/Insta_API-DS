@@ -2,6 +2,9 @@ import { createServer } from "http";
 import imageRouter from "./app/routers/_imageRouter.js";
 import tagsRouter from "./app/routers/_tagRouter.js";
 import filtersRouter from "./app/routers/_filterRouter.js";
+import userRouter from "./app/routers/_userRouter.js";
+import 'dotenv/config';
+
 createServer(async (req, res) => {
   //images
 
@@ -16,8 +19,11 @@ createServer(async (req, res) => {
   //filters
   else if (req.url.search("/api/filters") != -1) {
     await filtersRouter(req, res);
+  }
+  else if (req.url.search("/api/user") != -1) {
+    await userRouter(req, res)
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ status: "404", message: `Invalid root` }));
   }
-}).listen(3000, () => console.log("listen on 3000"));
+}).listen(process.env.APP_PORT, () => console.log(`listen on ${process.env.APP_PORT}`));
