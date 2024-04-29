@@ -1,15 +1,28 @@
-### GET - pobranie danych meta wybranego zdjęcia
-GET http://localhost:3000/api/user/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbTJlQGVtYWlsLnBsIiwiaWF0IjoxNzE0MzgwNzE2LCJleHAiOjE3MTQzODA3NDZ9.-3oD6U7KA0vkFrfz1oyNOwGWpNF2gfGj-XqDwgdETXk HTTP/1.1
+### GET - autoryzacja konta 
+GET http://localhost:3000/api/user/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbTJlQGVtYWlsLnBsIiwiaWF0IjoxNzE0NDEzNTMwLCJleHAiOjE3MTQ0MTM1NjB9.ulU3_Ur-wkulMtc9qXabH8zRLFeC_B40_h1TIdAlgzA HTTP/1.1
+
+
+### GET - pobranie listy użytkowników
+GET http://localhost:3000/api/user HTTP/1.1
 
 
 
-### PATCH /api/filters
+### POST - rejestracja użytkownika
 POST http://localhost:3000/api/user/register HTTP/1.1
 content-type: application/json
 
 {    
    "name": "name",
    "lastName": "lastName",
-   "email":"nam2e@email.pl",
+   "email":"name@email.pl",
    "password":"zaq1@WSX"
 }
+### POST - logowanie użytkownika
+POST http://localhost:3000/api/user/login HTTP/1.1
+//Authorization: Bearer eyJhbG.eyJlbWFpbCII6MTY1MjI4NjgzN30.xkXNNho-MxECZsJXCIU
+
+{
+  "email":"name@email.pl",
+  "password":"zaq1@WSX"
+}
+
