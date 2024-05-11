@@ -17,16 +17,16 @@ const tokenManager = {
         expiresIn: "24h", // "1m", "1d", "24h"
       }
     );
-    console.log({ token: token });
+    // console.log({ token: token });
     return token;
   },
   verifyToken: (token) => {
     try {
       let decoded = verify(token, process.env.SERVER_KEY);
-      console.log({ decoded: decoded });
+    //   console.log({ decoded: decoded });
       return decoded.email;
     } catch (ex) {
-      console.log({ message: ex.message });
+    //   console.log({ message: ex.message });
       return false;
     }
   },

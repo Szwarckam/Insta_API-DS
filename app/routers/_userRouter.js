@@ -9,6 +9,8 @@ const userRouter = async (request, response) => {
   if (request.url.match(/\/api\/user\/register/) && request.method == "POST") {
     //POST  rejestracja użytkownika
     console.log("Rejestracja użytkownika");
+  
+
     let data = JSON.parse(await getRequestData(request));
     console.log(data);
     try {

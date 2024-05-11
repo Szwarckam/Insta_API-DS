@@ -1,20 +1,20 @@
-import { photos, Photo } from "../model.js";
+import { photos, Photo, formatExts } from "../model.js";
 import sharp from "sharp";
 import { log } from "console";
 import path from "path";
 const __dirname = path.resolve();
 const filtersController = {
   setFilter: (data) => {
-    console.log(data);
+    // console.log(data);
     return new Promise(async (resolve, reject) => {
       const photoToFilter = photos.find((el) => el.id == data.id);
-      console.log("photoToFilter", photoToFilter);
+      // console.log("photoToFilter", photoToFilter);
       if (photoToFilter) {
         const splited = photoToFilter.url.split("\\").pop().split(".");
         // const name = splited[]
-        console.log(splited);
+        // console.log(splited);
         let newPath = path.join(__dirname, "upload", photoToFilter.album, `${splited[0]}-${data.filter}.${splited[1]}`);
-        console.log(newPath);
+        // console.log(newPath);
         if (photoToFilter.history.find((el) => el.status == data.filter)) {
           newPath = path.join(
             __dirname,
@@ -25,7 +25,7 @@ const filtersController = {
         }
         switch (data.filter) {
           case "grayscale":
-            console.log(photoToFilter.url.split("."));
+            // console.log(photoToFilter.url.split("."));
             await sharp(photoToFilter.url).grayscale().toFile(newPath);
             photoToFilter.updateHistory(data.filter, newPath);
             resolve(photoToFilter);
@@ -55,16 +55,20 @@ const filtersController = {
             }
           case "reformat":
             if (data.format) {
-              newPath = path.join(
-                __dirname,
-                "upload",
-                photoToFilter.album,
-                `${splited[0]}-${data.filter}.${data.format}`
-              );
-              await sharp(photoToFilter.url).toFormat(data.format).toFile(newPath);
-              photoToFilter.updateHistory(data.filter, newPath);
-              resolve(photoToFilter);
-              break;
+              if (formatExts.includes(data.format)) {
+                newPath = path.join(
+                  __dirname,
+                  "upload",
+                  photoToFilter.album,
+                  `${splited[0]}-${data.filter}.${data.format}`
+                );
+                await sharp(photoToFilter.url).toFormat(data.format).toFile(newPath);
+                photoToFilter.updateHistory(data.filter, newPath);
+                resolve(photoToFilter);
+                break;
+              } else {
+                reject("Invalid format.");
+              }
             } else {
               reject("Invalid data.");
             }
@@ -111,18 +115,18 @@ const filtersController = {
             break;
         }
       } else {
-        reject(`Photo with id: ${data.id} and filter: ${data.filter} exists`);
+        reject(`Photo with id: ${data.id} doesn't exists`);
       }
     });
   },
   delete: (id) => {
     return new Promise((resolve, reject) => {
       const delPhoto = photos.find((el) => el.id == id);
-      console.log(delPhoto);
+      // console.log(delPhoto);
       if (delPhoto) {
-        console.log("Do usunięcia");
+        // console.log("Do usunięcia");
         delPhoto.remove();
-        console.log(photos);
+        // console.log(photos);
         resolve(delPhoto);
       } else {
         reject("Nie udało się usunąć");
@@ -133,7 +137,7 @@ const filtersController = {
   update: (data) => {
     const id = data.id;
     const status = data.status;
-    console.log(data);
+    // console.log(data);
     return new Promise((resolve, reject) => {});
   },
   getMetaData: async (id) => {
@@ -152,7 +156,7 @@ const filtersController = {
     });
   },
   getOne: (id) => {
-    console.log(id);
+    // console.log(id);
     return new Promise((resolve, reject) => {
       const onePhoto = photos.find((el) => el.id == id);
       if (onePhoto) {

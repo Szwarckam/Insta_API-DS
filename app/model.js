@@ -84,10 +84,9 @@ let rawTags = [
 
 convertTags();
 
-
 // Użytkownicy
 
-let users = []
+let users = [];
 
 class User {
   constructor(name, lastName, email, password) {
@@ -97,6 +96,8 @@ class User {
     this.password = password;
     this.auth = false;
   }
-
 }
-export { photos, Photo, rawTags, Tag, convertedTags, convertTags, users, User };
+
+const formatExts = ["png", "gif", "jpeg", "jpg", "avif", "webp"];
+
+export { photos, Photo, rawTags, Tag, convertedTags, convertTags, users, User, formatExts };

@@ -7,15 +7,15 @@ import passManager from "../pass.js";
 const __dirname = path.resolve();
 const usersController = {
   registerUser: (data) => {
-    console.log(data);
+    // console.log(data);
     return new Promise(async (resolve, reject) => {
       if (!users.find((el) => el.email == data.email)) {
-        console.log(data.password);
+        // console.log(data.password);
         if (data.password.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/)) {
           const pass = await passManager.encryptPass(data.password);
           const newUser = new User(data.name, data.lastName, data.email, pass);
           const token = await tokenManager.createToken(data.email);
-          console.log(newUser);
+          // console.log(newUser);
           users.push(newUser);
           resolve("http://localhost:3000/api/user/confirm/" + token);
         } else {
@@ -51,7 +51,7 @@ const usersController = {
       if (user) {
         if (user.auth) {
           const checkPass = await passManager.decryptPass(data.password, user.password);
-          console.log(checkPass);
+          // console.log(checkPass);
           if (checkPass) {
             const token = await tokenManager.createToken(user.email);
             resolve(token);
@@ -68,9 +68,9 @@ const usersController = {
   },
   getAll: () => {
     return new Promise((resolve, reject) => {
-      console.log(users);
+      // console.log(users);
       if (users.length > 0) {
-        resolve(users);
+        // resolve(users);
       } else {
         reject("Array is emtey");
       }

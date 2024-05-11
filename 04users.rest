@@ -3,7 +3,7 @@ GET http://localhost:3000/api/user/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 
 
 ### GET - pobranie listy użytkowników
-GET http://localhost:3000/api/user HTTP/1.1
+GET http://localhost:3000/api/user/ HTTP/1.1
 
 
 
@@ -14,7 +14,7 @@ content-type: application/json
 {    
    "name": "name",
    "lastName": "lastName",
-   "email":"name@email.pl",
+   "email":"name3@email.pl",
    "password":"zaq1@WSX"
 }
 ### POST - logowanie użytkownika

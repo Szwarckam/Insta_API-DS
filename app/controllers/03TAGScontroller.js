@@ -1,19 +1,19 @@
 import { convertTags, convertedTags, Tag, rawTags } from "../model.js";
 const tagsController = {
   add: (data) => {
-    console.log(data);
+    // console.log(data);
     return new Promise((resolve, reject) => {
       if (data.name[0] !== "#") {
         data.name = `#${data.name}`;
       }
       if (!convertedTags.some((el) => el.name == data.name)) {
         const newTag = new Tag(data.name, data.popularity);
-        console.log(newTag);
+        // console.log(newTag);
         resolve(newTag);
         convertedTags.push(newTag);
         //rawTags.push(newTag.name);
         // convertTags();
-        console.log(convertedTags);
+        // console.log(convertedTags);
       } else {
         reject(`Tag ${data.name} exists`);
       }
@@ -50,7 +50,7 @@ const tagsController = {
   },
   getAllCnverted: () => {
     return new Promise((resolve, reject) => {
-      console.log(convertedTags.length);
+      // console.log(convertedTags.length);
       if (convertedTags.length > 0) {
         resolve(convertedTags);
       } else {
@@ -73,7 +73,7 @@ const tagsController = {
     });
   },
   getOne: (id) => {
-    console.log(id);
+    // console.log(id);
     return new Promise((resolve, reject) => {
       const oneTag = convertedTags.find((el) => el.id == id);
       if (oneTag) {

@@ -2,7 +2,7 @@ import { photos, Photo, convertedTags } from "../model.js";
 import tagsController from "./03TAGScontroller.js";
 const jsonController = {
   add: (data) => {
-    console.log(data);
+    // console.log(data);
     return new Promise((resolve, reject) => {
       if (!photos.some((el) => el.name == data.name && el.album == data.album)) {
         const newPhoto = new Photo(data.album, data.name, data.path);
@@ -18,11 +18,11 @@ const jsonController = {
   delete: (id) => {
     return new Promise((resolve, reject) => {
       const delPhoto = photos.find((el) => el.id == id);
-      console.log(delPhoto);
+      // console.log(delPhoto);
       if (delPhoto) {
-        console.log("Do usunięcia");
+        // console.log("Do usunięcia");
         delPhoto.remove();
-        console.log(photos);
+        // console.log(photos);
         resolve(delPhoto);
       } else {
         reject("Nie udało się usunąć");
@@ -33,7 +33,7 @@ const jsonController = {
   update: (data) => {
     const id = data.id;
     const status = data.status;
-    console.log(data);
+    // console.log(data);
     return new Promise((resolve, reject) => {
       const patPhoto = photos.find((el) => el.id == id);
       if (patPhoto) {
@@ -46,7 +46,7 @@ const jsonController = {
   },
   getAll: () => {
     return new Promise((resolve, reject) => {
-      console.log(photos.length);
+      // console.log(photos.length);
       if (photos.length > 0) {
         resolve(photos);
       } else {
@@ -55,7 +55,7 @@ const jsonController = {
     });
   },
   getOne: (id) => {
-    console.log(id);
+    // console.log(id);
     return new Promise((resolve, reject) => {
       const onePhoto = photos.find((el) => el.id == id);
       if (onePhoto) {
@@ -78,7 +78,7 @@ const jsonController = {
               if (!photo.tags.find((el) => el.name == tag)) {
                 photo.addTag(tag);
               } else {
-                console.log("Isnieje");
+                // console.log("Isnieje");
               }
             } else {
               if (!photo.tags.find((el) => el.name == tag)) {
@@ -86,10 +86,10 @@ const jsonController = {
                   await tagsController.add({ name: tag, popularity: 0 });
                   photo.addTag(tag);
                 } catch {
-                  console.log("Error");
+                  // console.log("Error");
                 }
               } else {
-                console.log("Isnieje");
+                // console.log("Isnieje");
               }
             }
           }
@@ -100,7 +100,7 @@ const jsonController = {
             if (!photo.tags.find((el) => el.name == tags)) {
               photo.addTag(tags);
             } else {
-              console.log("Isnieje");
+              // console.log("Isnieje");
             }
           } else {
             if (!photo.tags.find((el) => el.name == tags)) {
@@ -111,7 +111,7 @@ const jsonController = {
                 resolve("Error");
               }
             } else {
-              console.log("Isnieje");
+              // console.log("Isnieje");
             }
           }
         }

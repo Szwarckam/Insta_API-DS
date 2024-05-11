@@ -5,6 +5,7 @@ GET http://localhost:3000/api/filters/metadata/8fa6bd38-5a73-4bff-9dd3-1f746c2b4
 
 ### PATCH /api/filters
 PATCH  http://localhost:3000/api/filters HTTP/1.1
+authorization: Bearer eyJhbG.eyJlbWFpbCII6MTY1MjI4NjgzN30.xkXNNho-MxECZsJXCIU
 content-type: application/json
 
 {   

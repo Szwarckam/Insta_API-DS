@@ -6,7 +6,7 @@ import fs from "fs";
 const __dirname = path.resolve();
 const fileController = {
   add: (data) => {
-    console.log(data);
+    // console.log(data);
 
     return new Promise((resolve, reject) => {
       let form = formidable({});
@@ -57,6 +57,7 @@ const fileController = {
       if (photo) {
         const splited = photo.url.split("\\").pop().split(".");
         const data = fs.readFileSync(photo.url);
+        console.log(splited[1]);
         resolve({ file: data, ext: splited[1] });
       } else {
         reject(`Photo with id: ${id}, not found`);
@@ -71,7 +72,7 @@ const fileController = {
         if (filteredPhoto) {
           const splited = filteredPhoto.url.split("\\").pop().split(".");
           const data = fs.readFileSync(filteredPhoto.url);
-          resolve({ file: data, ext: splited[1] });
+          resolve({ file: data, ext: splited[1] == "jpg" ? "jpeg" : splited[1] });
         } else {
           reject(`Photo with id: ${id}, dont have filter: ${filter}`);
         }
