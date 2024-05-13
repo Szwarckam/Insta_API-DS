@@ -1,27 +1,28 @@
 ### GET - pobierz wszystkie dane
 GET http://localhost:3000/api/photos HTTP/1.1
-
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 ### GET - pobierz jeden element wg id
 //GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
 # GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
-GET http://localhost:3000/api/photos/d1fb22b1-4015-4006-ba2a-d606ea20cd86  HTTP/1.1
-
+GET http://localhost:3000/api/photos/d4647a30-4f24-4c91-9e2d-a616fa2b129e  HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 ### GET - pobranie zdjęcia z serwera wg id
-GET http://localhost:3000/api/getimage/b3eaeb82-a0a6-4316-b95d-a0badded57cd  HTTP/1.1
-
+GET http://localhost:3000/api/getimage/97d87297-746f-4de9-bc93-8eb97c403c02  HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 ### GET - pobranie przefiltrowanego zdjęcia z serwera wg id
-GET http://localhost:3000/api/getimage/b3eaeb82-a0a6-4316-b95d-a0badded57cd/filter/rotate  HTTP/1.1
-
+GET http://localhost:3000/api/getimage/a9820700-7789-4a8a-af1a-5d42fe651964/filter/reformat  HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 ### POST - nowe dane
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTU4OTY3MDU1MiwiaWF0IjoxNzE1NTg5NjcwLCJleHAiOjE3MTU2NzYwNzB9.Dcp_-qF8SLU5T1Nyvd9jH0e9PnOI3mNJ2Se_wfkvjps
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
@@ -30,26 +31,21 @@ Content-Type: image/png
 
 < ./logo2.png
 
-------FormBoundary1234
-Content-Disposition: form-data; name="album"
-Content-Type: text/plain
-
-user_22222album
-------FormBoundary1234
-
+#
 
 
 ### DELETE - usuń wg id
-DELETE http://localhost:3000/api/photos/d1fb22b1-4015-4006-ba2a-d606ea20cd86 HTTP/1.1
-
+DELETE http://localhost:3000/api/photos/d4647a30-4f24-4c91-9e2d-a616fa2b129e HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 ### PATCH - updatuj wg id
 PATCH  http://localhost:3000/api/photos HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 content-type: application/json
 
 {
-  "id": "d1fb22b1-4015-4006-ba2a-d606ea20cd86",    
+  "id": "68e38842-46b0-404d-8cdb-bbafc6232fe3",    
   "status": "łatwiutkie22"
 }
 

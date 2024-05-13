@@ -12,7 +12,9 @@ const imageRouter = async (request, response) => {
     // czytam dane z nagłowka
     let token = request.headers.authorization.split(" ")[1];
     console.log(token);
-    if (tokenManager.verifyToken(token)) {
+    const isValid = tokenManager.verifyToken(token);
+    console.log(isValid);
+    if (isValid) {
       if (
         request.url.match(
           /\/api\/photos\/([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$)/
@@ -48,7 +50,7 @@ const imageRouter = async (request, response) => {
         // console.log(request);
         // console.log("dodawanie zdjęcia");
         try {
-          const fileData = await fileController.add(request);
+          const fileData = await fileController.add(request, isValid);
           //console.log(fileData);
           try {
             const addJson = await jsonController.add(fileData);

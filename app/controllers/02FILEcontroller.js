@@ -5,7 +5,7 @@ import path, { join } from "path";
 import fs from "fs";
 const __dirname = path.resolve();
 const fileController = {
-  add: (data) => {
+  add: (data, directory) => {
     // console.log(data);
 
     return new Promise((resolve, reject) => {
@@ -16,7 +16,8 @@ const fileController = {
       form.uploadDir = path.join(__dirname, "upload");
 
       form.parse(data, function (err, fields, files) {
-        const albumDirectory = path.join(form.uploadDir, fields.album);
+        console.log(fields);
+        const albumDirectory = path.join(form.uploadDir, directory);
 
         fs.access(albumDirectory, fs.constants.F_OK, (err) => {
           if (err) {
@@ -25,24 +26,24 @@ const fileController = {
                 reject(err);
               } else {
                 const oldPath = files.file.path;
-                const newPath = files.file.path.replace("upload", path.join("upload", fields.album));
+                const newPath = files.file.path.replace("upload", path.join("upload", directory));
                 fs.rename(oldPath, newPath, (err) => {
                   if (err) {
                     reject(err);
                   } else {
-                    resolve({ album: fields.album, name: files.file.name, path: newPath });
+                    resolve({ album: directory, name: files.file.name, path: newPath });
                   }
                 });
               }
             });
           } else {
             const oldPath = files.file.path;
-            const newPath = files.file.path.replace("upload", path.join("upload", fields.album));
+            const newPath = files.file.path.replace("upload", path.join("upload", directory));
             fs.rename(oldPath, newPath, (err) => {
               if (err) {
                 reject(err);
               } else {
-                resolve({ album: fields.album, name: files.file.name, path: newPath });
+                resolve({ album: directory, name: files.file.name, path: newPath });
               }
             });
           }

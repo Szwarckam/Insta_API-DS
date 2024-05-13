@@ -1,18 +1,19 @@
 ### GET - pobranie danych meta wybranego zdjęcia
 GET http://localhost:3000/api/filters/metadata/8fa6bd38-5a73-4bff-9dd3-1f746c2b4013 HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 
 ### PATCH /api/filters
 PATCH  http://localhost:3000/api/filters HTTP/1.1
-authorization: Bearer eyJhbG.eyJlbWFpbCII6MTY1MjI4NjgzN30.xkXNNho-MxECZsJXCIU
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 content-type: application/json
 
 {   
-  "id":"b3eaeb82-a0a6-4316-b95d-a0badded57cd",
-  "filter":"rotate",
+  "id":"a9820700-7789-4a8a-af1a-5d42fe651964",
+  "filter":"reformat",
   "size": {"w": 100, "h": 100, "l": 100, "t": 100},
   "color": {"r": 0 ,"g": 0, "b": 255},
-  "format": "jpg",
+  "format": "avif",
   "angle": 90  
 }
