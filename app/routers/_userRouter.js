@@ -5,11 +5,12 @@ import path from "path";
 // const __dirname = path.resolve();
 import getRequestData from "../utils.js";
 import usersController from "../controllers/05USERScontroller.js";
+import tokenManager from "../auth.js";
 const userRouter = async (request, response) => {
   if (request.url.match(/\/api\/user\/register/) && request.method == "POST") {
     //POST  rejestracja użytkownika
     console.log("Rejestracja użytkownika");
-  
+
 
     let data = JSON.parse(await getRequestData(request));
     console.log(data);
@@ -34,6 +35,20 @@ const userRouter = async (request, response) => {
       console.log(userData);
       response.writeHead(200, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 200, message: "Logged in", token: userData }, null, 5));
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+    }
+  } else if (request.url.match(/\/api\/user\/resetpass/) && request.method == "POST") {
+    //POST  reset hasła użytkownika
+    console.log("reset hasła użytkownika");
+    let data = JSON.parse(await getRequestData(request));
+    console.log(data);
+    try {
+      const userData = await usersController.resetPass(data.email);
+      console.log(userData);
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 200, message: "Check your email" }, null, 5));
     } catch (err) {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: err }, null, 5));
@@ -65,10 +80,38 @@ const userRouter = async (request, response) => {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: err }, null, 5));
     }
+  } else if (request.url.match(/\/api\/user\/changepass/) && request.method == "POST") {
+    //POST  rejestracja użytkownika
+    console.log("Zmiana hasła użytkownika");
+    let data = JSON.parse(await getRequestData(request));
+    console.log(data);
+    if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
+      // czytam dane z nagłowka
+      let token = request.headers.authorization.split(" ")[1];
+      const isValid = tokenManager.verifyToken(token);
+      console.log(isValid);
+      if (isValid) {
+        try {
+          const userData = await usersController.changePass(isValid, data.newPassword, data.oldPassword);
+          response.writeHead(200, { "Content-Type": "application/json" });
+          response.end(JSON.stringify({ status: 200, message: userData }, null, 5));
+        } catch (err) {
+          response.writeHead(404, { "Content-Type": "application/json" });
+          response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+        }
+      } else {
+        response.writeHead(403, { "Content-Type": "application/json" });
+        response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
+      }
+    } else {
+      response.writeHead(403, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
+    }
   } else {
     response.writeHead(404, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "404", message: `Invalid root` }));
   }
+
   // pozostałe funkcje
 };
 
