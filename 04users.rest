@@ -7,6 +7,7 @@ GET http://localhost:3000/api/user/ HTTP/1.1
 
 
 
+
 ### POST - rejestracja użytkownika
 POST http://localhost:3000/api/user/register HTTP/1.1
 content-type: application/json
@@ -14,7 +15,7 @@ content-type: application/json
 {    
    "name": "name",
    "lastName": "lastName",
-   "email":"name3@email.pl",
+   "email":"name@email.pl",
    "password":"zaq1@WSX"
 }
 ### POST - logowanie użytkownika
@@ -23,6 +24,22 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 
 {
   "email":"name@email.pl",
-  "password":"zaq1@WSX"
+  "password":"123123"
+}
+### POST - zmiana hasła użytkownika
+POST http://localhost:3000/api/user/changepass HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWVAZW1haWwucGwiLCJ0aW1lIjoxNzE1Njg5MjIxOTA0LCJpYXQiOjE3MTU2ODkyMjEsImV4cCI6MTcxNTc3NTYyMX0.sLE3S5BvNI3Z8PK49N1_m9S18j181mh8Bi2NujDiIKc
+
+{
+  "email":"name@email.pl",
+  "oldPassword":"zaq1@WSX",
+  "newPassword":"zaq2!WSX"
 }
 
+### POST - resetowanie hasła użytkownika
+POST http://localhost:3000/api/user/resetpass HTTP/1.1
+//Authorization: Bearer eyJhbG.eyJlbWFpbCII6MTY1MjI4NjgzN30.xkXNNho-MxECZsJXCIU
+
+{
+  "email":"name@email.pl"
+}
