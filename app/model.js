@@ -95,6 +95,7 @@ class User {
     this.email = email;
     this.password = password;
     this.auth = false;
+    this.forceToChangePass = false;
   }
 }
 

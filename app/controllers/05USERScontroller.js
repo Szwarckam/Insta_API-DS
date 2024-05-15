@@ -17,8 +17,11 @@ const usersController = {
           const newUser = new User(data.name, data.lastName, data.email, pass);
           const token = await tokenManager.createToken(data.email);
 
-
-          mailManager.sendMail(data.email, 'Nowe konta  na instagramie', `<a href='http://localhost:3000/api/user/confirm/${token}'>Aktywuj swoje konto</a>`)
+          mailManager.sendMail(
+            data.email,
+            "Nowe konta  na instagramie",
+            `<a href='http://localhost:3000/api/user/confirm/${token}'>Aktywuj swoje konto</a>`
+          );
           // console.log(newUser);
           users.push(newUser);
           resolve("Check your e-mail");
@@ -84,20 +87,25 @@ const usersController = {
   changePass: (email, newPassword, oldPassword) => {
     console.log("changePass function");
     return new Promise(async (resolve, reject) => {
-      const user = users.find(el => el.email == email)
+      const user = users.find((el) => el.email == email);
+      console.log(user);
       if (user) {
-        if (newPassword.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/)) {
-          const checkPass = await passManager.decryptPass(oldPassword, user.password);
-          if (checkPass) {
-            const pass = await passManager.encryptPass(newPassword);
-            user.password = pass
-            mailManager.sendMail(email, 'Zmiana hasła na instagramie', `Ktoś zmienił twoje hasło na koncie`)
-            resolve(`Password for user: ${email} changed.`)
+        if (user.auth) {
+          if (newPassword.match(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/)) {
+            const checkPass = await passManager.decryptPass(oldPassword, user.password);
+            if (checkPass) {
+              const pass = await passManager.encryptPass(newPassword);
+              user.password = pass;
+              mailManager.sendMail(email, "Zmiana hasła na instagramie", `Ktoś zmienił twoje hasło na koncie`);
+              resolve(`Password for user: ${email} changed.`);
+            } else {
+              reject("Invalid email or password");
+            }
           } else {
             reject("Invalid email or password");
           }
         } else {
-          reject("Invalid email or password");
+          reject("Authorize your account first");
         }
       } else {
         reject(`User with ${email} doesn't exists.`);
@@ -107,26 +115,25 @@ const usersController = {
   resetPass: (email) => {
     console.log("resetPass function");
     return new Promise(async (resolve, reject) => {
-      const user = users.find(el => el.email == email)
+      const user = users.find((el) => el.email == email);
       if (user) {
         if (user.auth) {
           //to do generowanie hasłeł tymczasowych
-          const pass = '123123'
+          const pass = await passManager.generateTempPass();
+          console.log(pass);
           const encPass = await passManager.encryptPass(pass);
-          user.password = encPass
-          user.forceToChangePass = true
-          mailManager.sendMail(email, `Reset hasła na koncie`, `Witaj oto twoje jendorazowe hasło: ${pass}`)
+          user.password = encPass;
+          user.forceToChangePass = true;
+          mailManager.sendMail(email, `Reset hasła na koncie`, `Witaj oto twoje jendorazowe hasło: ${pass}`);
 
-          resolve(`Password for user: ${email} reset`)
+          resolve(`Password for user: ${email} reset`);
         } else {
-          reject(`Auth your account first.`);
+          reject(`Authorize your account first`);
         }
-
       } else {
         reject(`User with ${email} doesn't exists.`);
       }
     });
-
-  }
+  },
 };
 export default usersController;
