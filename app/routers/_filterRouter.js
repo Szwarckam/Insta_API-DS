@@ -10,7 +10,7 @@ const filtersRouter = async (req, response) => {
     // czytam dane z nagłowka
     let token = req.headers.authorization.split(" ")[1];
     console.log(token);
-    if (tokenManager.verifyToken(token)) {
+    if (tokenManager.verifyToken(token) && !tokenManager.invalidTokens.includes(token)) {
       if (
         req.url.match(
           /\/api\/filters\/metadata\/([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$)/

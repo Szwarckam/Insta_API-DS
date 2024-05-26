@@ -6,6 +6,7 @@ const { hash, compare } = bcryptjs;
 const { sign, verify } = jsonwebtoken;
 
 const tokenManager = {
+  invalidTokens: [],
   createToken: async (email) => {
     let token = await sign(
       {
@@ -23,10 +24,10 @@ const tokenManager = {
   verifyToken: (token) => {
     try {
       let decoded = verify(token, process.env.SERVER_KEY);
-    //   console.log({ decoded: decoded });
+      //   console.log({ decoded: decoded });
       return decoded.email;
     } catch (ex) {
-    //   console.log({ message: ex.message });
+      //   console.log({ message: ex.message });
       return false;
     }
   },

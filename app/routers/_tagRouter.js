@@ -3,15 +3,16 @@ const logger = tracer.colorConsole();
 import path from "path";
 const __dirname = path.resolve();
 import getRequestData from "../utils.js";
-import tagsController from "../controllers/03TAGScontroller.js";
+// import tagsController from "../controllers/03TAGScontroller.js";
 import tokenManager from "../auth.js";
+import tagsController from "../controllers/03TAGScontroller.js";
 const tagRouter = async (request, response) => {
   if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
     // czytam dane z nagłowka
     let token = request.headers.authorization.split(" ")[1];
     console.log(token);
     console.log(tokenManager.verifyToken(token));
-    if (tokenManager.verifyToken(token)) {
+    if (tokenManager.verifyToken(token) && !tokenManager.invalidTokens.includes(token)) {
       if (request.url.match(/\/api\/tags\/raw$/) && request.method == "GET") {
         //GET raw tags
         console.log("Pobierz wszystkie tagi");

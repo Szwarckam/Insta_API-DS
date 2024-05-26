@@ -6,8 +6,13 @@ GET http://localhost:3000/api/user/confirm/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 GET http://localhost:3000/api/user/ HTTP/1.1
 
 
+### GET - wylogowanie
+GET http://localhost:3000/api/logout HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
 
-
+###GET - pobranie danych profilu
+GET http://localhost:3000/api/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
 ### POST - rejestracja użytkownika
 POST http://localhost:3000/api/user/register HTTP/1.1
 content-type: application/json
@@ -28,7 +33,7 @@ POST http://localhost:3000/api/user/login HTTP/1.1
 }
 ### POST - zmiana hasła użytkownika
 POST http://localhost:3000/api/user/changepass HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTU3NTc5MjkwNjYsImlhdCI6MTcxNTc1NzkyOSwiZXhwIjoxNzE1ODQ0MzI5fQ.2DjKrojWQsiwzbBddem6SX6s1pHrCZE-ef_1Mr469XQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
 
 {
   
@@ -43,3 +48,28 @@ POST http://localhost:3000/api/user/resetpass HTTP/1.1
 {
   "email":"user@szwarckam.ct8.pl"
 }
+
+
+###PATCH - aktualizuje profil użytkownika
+PATCH http://localhost:3000/api/profile HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
+
+{
+ "name": "Kamil",
+ "lastName": "Szwarc",
+ "bio": "Autor"
+}
+
+###POST - Wysłąnie zdjęcia profilowego
+POST http://localhost:3000/api/profile HTTP/1.1
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMzODUwOTUsImlhdCI6MTcxNjczMzM4NSwiZXhwIjoxNzE2ODE5Nzg1fQ.c8IvqNag10WO1Y_9Gf7eslzF83FpaIZ3Wghd2YAs4vw
+Content-Type: multipart/form-data; boundary=----FormBoundary1234
+
+------FormBoundary1234
+Content-Disposition: form-data; name="file"; filename="input1222.png"
+Content-Type: image/png
+
+< ./logo2.png
+
+------FormBoundary1234
+

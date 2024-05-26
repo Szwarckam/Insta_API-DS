@@ -12,12 +12,12 @@ const profileController = {
   getProfileData: (email) => {
     // console.log(data);
     return new Promise(async (resolve, reject) => {
-      const user = users.find((el) => el.email == email)
+      const user = users.find((el) => el.email == email);
       if (user) {
         if (user.auth) {
-          const data = user.getProfileData()
+          const data = user.getProfileData();
 
-          resolve(data)
+          resolve(data);
         } else {
           reject("Authorize your account first");
         }
@@ -29,20 +29,18 @@ const profileController = {
   },
   updateProfileData(email, data) {
     return new Promise(async (resolve, reject) => {
-      const user = users.find((el) => el.email == email)
+      const user = users.find((el) => el.email == email);
       if (user) {
         if (user.auth) {
-          user.name = data.name
-          user.lastName = data.lastName
-          user.bio = data.bio
+          user.name = data.name;
+          user.lastName = data.lastName;
+          user.bio = data.bio;
           // console.log(data);
-          const profileData = user.getProfileData()
-          resolve(profileData)
-
+          const profileData = user.getProfileData();
+          resolve(profileData);
         } else {
           reject("Authorize your account first");
         }
-
       } else {
         // console.log("błąd");
         reject(`User with ${email} doesn't exists.`);
@@ -53,7 +51,7 @@ const profileController = {
     console.log("Funkcja");
     return new Promise((resolve, reject) => {
       // const user = users.find((el) => el.email == email)
-      const user = users.find((el) => el.email == directory)
+      const user = users.find((el) => el.email == directory);
       console.log(user);
       if (user) {
         if (user.auth) {
@@ -66,7 +64,7 @@ const profileController = {
           form.parse(data, function (err, fields, files) {
             console.log(fields);
             const albumDirectory = path.join(form.uploadDir, directory);
-            console.log("Path", files.file.path);
+            // console.log("Path", files.file.path);
             console.log(albumDirectory);
             fs.access(albumDirectory, fs.constants.F_OK, (err) => {
               if (err) {
@@ -75,7 +73,7 @@ const profileController = {
                     reject(err);
                   } else {
                     const oldPath = files.file.path;
-                    const newPath = path.join(__dirname, "upload", directory, "profile.png")
+                    const newPath = path.join(__dirname, "upload", directory, "profile.png");
                     console.log(newPath);
                     fs.rename(oldPath, newPath, (err) => {
                       if (err) {
@@ -88,7 +86,7 @@ const profileController = {
                 });
               } else {
                 const oldPath = files.file.path;
-                const newPath = path.join(__dirname, "upload", directory, "profile.png")
+                const newPath = path.join(__dirname, "upload", directory, "profile.png");
                 console.log(newPath);
                 fs.rename(oldPath, newPath, (err) => {
                   if (err) {

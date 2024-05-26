@@ -96,6 +96,11 @@ class User {
     this.password = password;
     this.auth = false;
     this.forceToChangePass = false;
+    this.bio = ""
+
+  }
+  getProfileData() {
+    return { name: this.name, lastName: this.lastName, email: this.email, bio: this.bio }
   }
 }
 

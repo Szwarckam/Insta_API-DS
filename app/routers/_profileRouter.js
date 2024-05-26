@@ -4,7 +4,6 @@ import path from "path";
 
 // const __dirname = path.resolve();
 import getRequestData from "../utils.js";
-import usersController from "../controllers/05USERScontroller.js";
 import profileController from "../controllers/06PROFILEcontroller.js";
 import tokenManager from "../auth.js";
 const profileRouter = async (request, response) => {
@@ -13,7 +12,7 @@ const profileRouter = async (request, response) => {
     let token = request.headers.authorization.split(" ")[1];
     console.log(token);
     token = tokenManager.verifyToken(token);
-    if (token) {
+    if (token && !tokenManager.invalidTokens.includes(token)) {
       if (request.url.match(/\/api\/profile$/) && request.method == "GET") {
         try {
           const profileData = await profileController.getProfileData(token);
@@ -26,11 +25,10 @@ const profileRouter = async (request, response) => {
           response.end(JSON.stringify({ status: 404, message: err }, null, 5));
         }
       } else if (request.url.match(/\/api\/profile$/) && request.method == "PATCH") {
-
         const data = JSON.parse(await getRequestData(request));
         console.log(data);
         try {
-          const updateProfileData = await profileController.updateProfileData(token, data)
+          const updateProfileData = await profileController.updateProfileData(token, data);
           response.writeHead(200, { "Content-Type": "application/json" });
           response.end(JSON.stringify({ status: 200, profileData: updateProfileData }, null, 5));
         } catch (err) {
@@ -42,7 +40,7 @@ const profileRouter = async (request, response) => {
         // const data = JSON.parse(await getRequestData(request));
         // console.log(data);
         try {
-          const updateProfileIMG = await profileController.updateProfileIMG(token, request)
+          const updateProfileIMG = await profileController.updateProfileIMG(token, request);
           response.writeHead(200, { "Content-Type": "application/json" });
           response.end(JSON.stringify({ status: 200, profileData: updateProfileIMG }, null, 5));
         } catch (err) {
@@ -50,7 +48,6 @@ const profileRouter = async (request, response) => {
           response.writeHead(404, { "Content-Type": "application/json" });
           response.end(JSON.stringify({ status: 404, message: err }, null, 5));
         }
-
       } else {
         response.writeHead(404, { "Content-Type": "application/json" });
         response.end(JSON.stringify({ status: "404", message: `Invalid root` }));
@@ -63,7 +60,6 @@ const profileRouter = async (request, response) => {
     response.writeHead(403, { "Content-Type": "application/json" });
     response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
   }
-
 
   // pozostałe funkcje
 };

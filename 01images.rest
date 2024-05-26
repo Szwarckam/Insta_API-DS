@@ -22,7 +22,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQ
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTU4OTY3MDU1MiwiaWF0IjoxNzE1NTg5NjcwLCJleHAiOjE3MTU2NzYwNzB9.Dcp_-qF8SLU5T1Nyvd9jH0e9PnOI3mNJ2Se_wfkvjps
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzM4MzE5MjcsImlhdCI6MTcxNjczMzgzMSwiZXhwIjoxNzE2ODIwMjMxfQ.6NvzGLoCPRkkW-0SUYSR1OmJlTekLHyYBlccZccEnPQ
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
@@ -31,7 +31,7 @@ Content-Type: image/png
 
 < ./logo2.png
 
-#
+------FormBoundary1234
 
 
 ### DELETE - usuń wg id

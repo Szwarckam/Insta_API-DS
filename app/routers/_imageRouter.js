@@ -14,7 +14,7 @@ const imageRouter = async (request, response) => {
     console.log(token);
     const isValid = tokenManager.verifyToken(token);
     console.log(isValid);
-    if (isValid) {
+    if (isValid && !tokenManager.invalidTokens.includes(token)) {
       if (
         request.url.match(
           /\/api\/photos\/([0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$)/

@@ -11,7 +11,6 @@ const userRouter = async (request, response) => {
     //POST  rejestracja użytkownika
     console.log("Rejestracja użytkownika");
 
-
     let data = JSON.parse(await getRequestData(request));
     console.log(data);
     try {
