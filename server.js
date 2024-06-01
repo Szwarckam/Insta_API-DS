@@ -10,7 +10,16 @@ import "dotenv/config";
 
 createServer(async (req, res) => {
   //images
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Request-Method", "*");
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PATCH, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "*, Authorization");
 
+  if (req.method === "OPTIONS") {
+    res.writeHead(200);
+    res.end();
+    return;
+  }
   if (req.url.search("/api/photos") != -1 || req.url.search("/api/getimage") != -1) {
     await imageRouter(req, res);
   }
@@ -29,6 +38,7 @@ createServer(async (req, res) => {
   } else if (req.url.search("/api/logout") != -1) {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
       // czytam dane z nagłowka
+      console.log("Wylogowywanie");
       let token = req.headers.authorization.split(" ")[1];
       tokenManager.invalidTokens.push(token);
       console.log(tokenManager.invalidTokens);

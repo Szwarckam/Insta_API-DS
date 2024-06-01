@@ -17,16 +17,14 @@ const userRouter = async (request, response) => {
       const userData = await usersController.registerUser(data);
       console.log(userData);
       response.writeHead(200, { "Content-Type": "application/json" });
-      response.end(
-        JSON.stringify({ status: 200, message: "Success, use token for authorization", token: userData }, null, 5)
-      );
+      response.end(JSON.stringify({ status: 200, message: "Check your email", token: userData }, null, 5));
     } catch (err) {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: err }, null, 5));
     }
   } else if (request.url.match(/\/api\/user\/login/) && request.method == "POST") {
     //POST  rejestracja użytkownika
-    console.log("Rejestracja użytkownika");
+    console.log("Logowanie użytkownika");
     let data = JSON.parse(await getRequestData(request));
     console.log(data);
     try {
@@ -62,8 +60,9 @@ const userRouter = async (request, response) => {
     console.log(token);
     try {
       const tokenValidation = await usersController.checkAuth(token);
-      response.writeHead(200, { "Content-Type": "application/json" });
-      response.end(JSON.stringify({ status: 200, message: tokenValidation }, null, 5));
+      response.writeHead(302, { Location: "http://localhost:5173/auth" });
+      // response.writeHead(200, { "Content-Type": "application/json" });
+      response.end();
     } catch (err) {
       response.writeHead(404, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: 404, message: err }, null, 5));

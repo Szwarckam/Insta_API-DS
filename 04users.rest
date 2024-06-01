@@ -8,7 +8,7 @@ GET http://localhost:3000/api/user/ HTTP/1.1
 
 ### GET - wylogowanie
 GET http://localhost:3000/api/logout HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzM4MzE5MjcsImlhdCI6MTcxNjczMzgzMSwiZXhwIjoxNzE2ODIwMjMxfQ.6NvzGLoCPRkkW-0SUYSR1OmJlTekLHyYBlccZccEnPQ
 
 ###GET - pobranie danych profilu
 GET http://localhost:3000/api/profile HTTP/1.1
