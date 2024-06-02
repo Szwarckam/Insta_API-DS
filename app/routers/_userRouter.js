@@ -6,6 +6,7 @@ import path from "path";
 import getRequestData from "../utils.js";
 import usersController from "../controllers/05USERScontroller.js";
 import tokenManager from "../auth.js";
+import { log } from "console";
 const userRouter = async (request, response) => {
   if (request.url.match(/\/api\/user\/register/) && request.method == "POST") {
     //POST  rejestracja użytkownika
@@ -83,11 +84,14 @@ const userRouter = async (request, response) => {
     console.log("Zmiana hasła użytkownika");
     let data = JSON.parse(await getRequestData(request));
     console.log(data);
+    console.log(request.headers.authorization && request.headers.authorization.startsWith("Bearer"));
     if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
       // czytam dane z nagłowka
       let token = request.headers.authorization.split(" ")[1];
+      console.log(token);
       const isValid = tokenManager.verifyToken(token);
       console.log(isValid);
+      console.log("Data", data);
       if (isValid) {
         try {
           const userData = await usersController.changePass(isValid, data.newPassword, data.oldPassword);

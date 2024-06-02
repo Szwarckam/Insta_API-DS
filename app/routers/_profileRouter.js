@@ -30,7 +30,9 @@ const profileRouter = async (request, response) => {
         try {
           const updateProfileData = await profileController.updateProfileData(token, data);
           response.writeHead(200, { "Content-Type": "application/json" });
-          response.end(JSON.stringify({ status: 200, profileData: updateProfileData }, null, 5));
+          response.end(
+            JSON.stringify({ status: 200, message: "Updated profile data", profileData: updateProfileData }, null, 5)
+          );
         } catch (err) {
           response.writeHead(404, { "Content-Type": "application/json" });
           response.end(JSON.stringify({ status: 404, message: err }, null, 5));
@@ -42,7 +44,9 @@ const profileRouter = async (request, response) => {
         try {
           const updateProfileIMG = await profileController.updateProfileIMG(token, request);
           response.writeHead(200, { "Content-Type": "application/json" });
-          response.end(JSON.stringify({ status: 200, profileData: updateProfileIMG }, null, 5));
+          response.end(
+            JSON.stringify({ status: 200, message: "Updated profile img", profileData: updateProfileIMG }, null, 5)
+          );
         } catch (err) {
           console.log("ERROR");
           response.writeHead(404, { "Content-Type": "application/json" });

@@ -1,12 +1,12 @@
 ### GET - pobierz wszystkie dane
 GET http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+
 
 ### GET - pobierz jeden element wg id
 //GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
 # GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
-GET http://localhost:3000/api/photos/d4647a30-4f24-4c91-9e2d-a616fa2b129e  HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+GET http://localhost:3000/api/photos/c132f5ea-f480-4aae-98cd-c4385aae8aed  HTTP/1.1
+# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 ### GET - pobranie zdjęcia z serwera wg id
@@ -14,15 +14,15 @@ GET http://localhost:3000/api/getimage/97d87297-746f-4de9-bc93-8eb97c403c02  HTT
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 ### GET - pobranie przefiltrowanego zdjęcia z serwera wg id
-GET http://localhost:3000/api/getimage/a9820700-7789-4a8a-af1a-5d42fe651964/filter/reformat  HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filter/reformat  HTTP/1.1
+# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
 ### POST - nowe dane
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzM4MzE5MjcsImlhdCI6MTcxNjczMzgzMSwiZXhwIjoxNzE2ODIwMjMxfQ.6NvzGLoCPRkkW-0SUYSR1OmJlTekLHyYBlccZccEnPQ
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTcyNTg2MjI3MjMsImlhdCI6MTcxNzI1ODYyMiwiZXhwIjoxNzE3MzQ1MDIyfQ.UR9jtJul9KtnxzS4nuRXBUQ4M29yiLEwe9jnLUupvpg
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234

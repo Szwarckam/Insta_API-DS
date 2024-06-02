@@ -88,6 +88,8 @@ const usersController = {
     console.log("changePass function");
     return new Promise(async (resolve, reject) => {
       const user = users.find((el) => el.email == email);
+      console.log(newPassword);
+      console.log(oldPassword);
       console.log(user);
       if (user) {
         if (user.auth) {
@@ -99,10 +101,10 @@ const usersController = {
               mailManager.sendMail(email, "Zmiana hasła na instagramie", `Ktoś zmienił twoje hasło na koncie`);
               resolve(`Password for user: ${email} changed.`);
             } else {
-              reject("Invalid email or password");
+              reject("Invalid password");
             }
           } else {
-            reject("Invalid email or password");
+            reject("Invalid password");
           }
         } else {
           reject("Authorize your account first");

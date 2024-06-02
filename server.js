@@ -10,6 +10,7 @@ import "dotenv/config";
 
 createServer(async (req, res) => {
   //images
+
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Request-Method", "*");
   res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PATCH, PUT, DELETE");
@@ -20,10 +21,11 @@ createServer(async (req, res) => {
     res.end();
     return;
   }
+  console.log("test");
   if (req.url.search("/api/photos") != -1 || req.url.search("/api/getimage") != -1) {
+    console.log("Zdjęcia");
     await imageRouter(req, res);
   }
-
   //tags
   else if (req.url.search("/api/tags") != -1) {
     await tagsRouter(req, res);
