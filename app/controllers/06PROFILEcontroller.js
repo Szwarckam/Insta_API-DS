@@ -1,4 +1,4 @@
-import { User, users } from "../model.js";
+import { User, photos, users } from "../model.js";
 import sharp from "sharp";
 import { log } from "console";
 import path from "path";
@@ -30,12 +30,19 @@ const profileController = {
   updateProfileData(email, data) {
     return new Promise(async (resolve, reject) => {
       const user = users.find((el) => el.email == email);
+      console.log(user);
       if (user) {
         if (user.auth) {
           user.name = data.name;
           user.lastName = data.lastName;
           user.bio = data.bio;
           // console.log(data);
+          const photosToUpdate = photos.filter((el) => el.album == email);
+          console.log(photosToUpdate);
+          for (const photo of photosToUpdate) {
+            photo.authorName = data.name;
+            photo.authorLastName = data.lastName;
+          }
           const profileData = user.getProfileData();
           resolve(profileData);
         } else {

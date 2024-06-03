@@ -1,17 +1,51 @@
-import { photos, Photo, convertedTags } from "../model.js";
+import { photos, Photo, convertedTags, users } from "../model.js";
 import tagsController from "./03TAGScontroller.js";
 const jsonController = {
   add: (data) => {
     // console.log(data);
     return new Promise((resolve, reject) => {
       if (!photos.some((el) => el.name == data.name && el.album == data.album)) {
-        const newPhoto = new Photo(data.album, data.name, data.path);
+        const author = users.find((el) => el.email == data.album);
+        const newPhoto = new Photo(data.album, data.name, data.path, author.name, author.lastName);
         console.log(newPhoto);
         photos.push(newPhoto);
         console.log(photos);
         resolve(newPhoto);
       } else {
         reject("Nie udało się dodać");
+      }
+    });
+  },
+  leaveLike: (data, email) => {
+    return new Promise(async (resolve, reject) => {
+      console.log(data.id);
+      console.log(email);
+      const photo = photos.find((el) => el.id == data.id);
+      const user = users.find((el) => el.email == email);
+      console.log(users);
+      console.log(photo);
+      console.log(user);
+      const files = await jsonController.getAll();
+      if (files) {
+        if (photo && user) {
+          if (photo.likes.find((el) => el == user.email)) {
+            console.log("Dislike");
+
+            photo.likes = photo.likes.filter((el) => el !== email);
+            console.log(photo.likes);
+
+            resolve({ message: "Photo disliked", files: files });
+          } else {
+            console.log("Like");
+            photo.likes.push(email);
+            console.log(photo.likes);
+            resolve({ message: "Photo likes", files: files });
+          }
+        } else {
+          reject(`Photo with id: ${data.id} not found`);
+        }
+      } else {
+        reject(`Photo with id: ${data.id} not found`);
       }
     });
   },

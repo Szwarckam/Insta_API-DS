@@ -1,4 +1,4 @@
-import { photos, Photo } from "../model.js";
+import { photos, Photo, users } from "../model.js";
 import formidable from "formidable";
 import { log } from "console";
 import path, { join } from "path";
@@ -51,7 +51,18 @@ const fileController = {
       });
     });
   },
-  delete: (id) => {},
+  getProfileIMG(email) {
+    return new Promise((resolve, reject) => {
+      const user = users.find((el) => el.email == email);
+      if (user) {
+        console.log(path.join(__dirname, "upload", email, "profile.png"));
+        const data = fs.readFileSync(path.join(__dirname, "upload", email, "profile.png"));
+        resolve({ file: data, ext: "png" });
+      } else {
+        reject(`Profile photo, not found`);
+      }
+    });
+  },
   getOne: (id) => {
     return new Promise((resolve, reject) => {
       const photo = photos.find((el) => el.id == id);

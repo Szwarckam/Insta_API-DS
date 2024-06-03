@@ -1,8 +1,9 @@
 import { FORMERR } from "dns";
 import { v4 as uuidv4 } from "uuid";
 import createToken from "./auth.js";
+import passManager from "./pass.js";
 class Photo {
-  constructor(album, ogName, url) {
+  constructor(album, ogName, url, authorName, authorLastName) {
     this.id = uuidv4();
     this.album = album;
     this.originalName = ogName;
@@ -14,7 +15,10 @@ class Photo {
         timestamp: Date.now(),
       },
     ];
+    this.authorName = authorName;
+    this.authorLastName = authorLastName;
     this.tags = [];
+    this.likes = [];
     // this.completed = false;
   }
   remove() {
@@ -96,14 +100,22 @@ class User {
     this.password = password;
     this.auth = false;
     this.forceToChangePass = false;
-    this.bio = ""
-
+    this.bio = "";
   }
   getProfileData() {
-    return { name: this.name, lastName: this.lastName, email: this.email, bio: this.bio }
+    return { name: this.name, lastName: this.lastName, email: this.email, bio: this.bio };
   }
 }
 
+async function addAdmin() {
+  const pass = await passManager.encryptPass("zaq1@WSX");
+  const newAdmin = new User("Admin", "Admin", "admin@insta.pl", pass);
+  newAdmin.auth = true;
+  newAdmin.bio = "Testowy administrator";
+  users.push(newAdmin);
+}
+
+addAdmin();
 const formatExts = ["png", "gif", "jpeg", "jpg", "avif", "webp"];
 
 export { photos, Photo, rawTags, Tag, convertedTags, convertTags, users, User, formatExts };

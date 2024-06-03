@@ -5,7 +5,7 @@ GET http://localhost:3000/api/photos HTTP/1.1
 ### GET - pobierz jeden element wg id
 //GET http://localhost:3000/api/tasks/9fb0bf73-47c2-4f97-ad7b-94c2c4263cf1 HTTP/1.1
 # GET http://localhost:3000/api/tasks/C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD HTTP/1.1
-GET http://localhost:3000/api/photos/c132f5ea-f480-4aae-98cd-c4385aae8aed  HTTP/1.1
+GET http://localhost:3000/api/photos/60648964-dde8-4a47-b6da-ca14d32b37ca  HTTP/1.1
 # authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
@@ -22,7 +22,7 @@ GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filt
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTcyNTg2MjI3MjMsImlhdCI6MTcxNzI1ODYyMiwiZXhwIjoxNzE3MzQ1MDIyfQ.UR9jtJul9KtnxzS4nuRXBUQ4M29yiLEwe9jnLUupvpg
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzQwNTg0ODg2MCwiaWF0IjoxNzE3NDA1ODQ4LCJleHAiOjE3MTc0OTIyNDh9.laoSYMFq2R-mdeh-WadQX6m-6kyGV0PrPreNJ2j_-kU
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
@@ -33,10 +33,15 @@ Content-Type: image/png
 
 ------FormBoundary1234
 
+###GET - pobiera zdjęcie profilowe użytkownika
+GET http://localhost:3000/api/getimage/profile/admin@insta.pl
+
 
 ### DELETE - usuń wg id
 DELETE http://localhost:3000/api/photos/d4647a30-4f24-4c91-9e2d-a616fa2b129e HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+
+
 
 
 ### PATCH - updatuj wg id
@@ -47,6 +52,14 @@ content-type: application/json
 {
   "id": "68e38842-46b0-404d-8cdb-bbafc6232fe3",    
   "status": "łatwiutkie22"
+}
+###POST - do ustawiania likó bądź dislike'ów
+POST  http://localhost:3000/api/photos/like HTTP/1.1
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzQwODI5ODEyMiwiaWF0IjoxNzE3NDA4Mjk4LCJleHAiOjE3MTc0OTQ2OTh9.Na5x1YCsgw5awm_t3U9jX7WaKKaTfTfKHqzTpfezmh8
+content-type: application/json
+
+{
+  "id": "6af4f7bf-4a9e-458c-824a-362ab1bf4725"
 }
 
 

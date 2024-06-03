@@ -70,6 +70,21 @@ const imageRouter = async (request, response) => {
       response.end(JSON.stringify({ status: 404, message: `Photo with id: ${id}, not found` }, null, 5));
     }
   } else if (
+    request.url.match(/\/api\/getimage\/profile\/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/) &&
+    request.method == "GET"
+  ) {
+    const email = request.url.split("/")[4];
+    console.log(email);
+    //GET specific image by id
+    try {
+      const profilePhoto = await fileController.getProfileIMG(email);
+      response.writeHead(200, { "Content-Type": `image/png` });
+      response.end(profilePhoto.file);
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+    }
+  } else if (
     request.url.match(
       /\/api\/getimage\/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})\/filter\/([a-zA-Z0-9_-]+)/
     ) &&
@@ -148,6 +163,20 @@ const imageRouter = async (request, response) => {
         } catch {
           response.writeHead(404, { "Content-Type": "application/json" });
           response.end(JSON.stringify({ status: 404, message: `Photo with id: ${data.id} not found` }, null, 5));
+        }
+      } else if (request.url == "/api/photos/like" && request.method == "POST") {
+        //PATCH one photo
+        console.log("Dodawanie like'ów");
+        let data = await getRequestData(request);
+        data = JSON.parse(data);
+        try {
+          const likeData = await jsonController.leaveLike(data, isValid);
+          response.writeHead(200, { "Content-Type": "application/json" });
+          console.log(likeData);
+          response.end(JSON.stringify({ status: 200, message: likeData.message, files: likeData.files }, null, 5));
+        } catch (err) {
+          response.writeHead(404, { "Content-Type": "application/json" });
+          response.end(JSON.stringify({ status: 404, message: err }, null, 5));
         }
       } else if (request.url == "/api/photos/tags" && request.method == "PATCH") {
         //PATCH dodawanie tagu do zdjęcia
