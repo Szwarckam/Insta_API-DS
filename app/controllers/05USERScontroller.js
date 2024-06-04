@@ -22,11 +22,11 @@ const usersController = {
           const sourceFile = path.join(__dirname, "userIcon.png");
           const destinationFile = path.join(userDir, "profile.png");
           fs.copyFileSync(sourceFile, destinationFile);
-          // mailManager.sendMail(
-          //   data.email,
-          //   "Nowe konta  na instagramie",
-          //   `<a href='http://localhost:3000/api/user/confirm/${token}'>Aktywuj swoje konto</a>`
-          // );
+          mailManager.sendMail(
+            data.email,
+            "Nowe konta  na instagramie",
+            `<a href='http://localhost:3000/api/user/confirm/${token}'>Aktywuj swoje konto</a>`
+          );
           // console.log(newUser);
           users.push(newUser);
           resolve("Check your e-mail");
@@ -103,7 +103,7 @@ const usersController = {
             if (checkPass) {
               const pass = await passManager.encryptPass(newPassword);
               user.password = pass;
-              // mailManager.sendMail(email, "Zmiana hasła na instagramie", `Ktoś zmienił twoje hasło na koncie`);
+              mailManager.sendMail(email, "Zmiana hasła na instagramie", `Ktoś zmienił twoje hasło na koncie`);
               resolve(`Password for user: ${email} changed.`);
             } else {
               reject("Invalid password");
@@ -131,7 +131,7 @@ const usersController = {
           const encPass = await passManager.encryptPass(pass);
           user.password = encPass;
           user.forceToChangePass = true;
-          // mailManager.sendMail(email, `Reset hasła na koncie`, `Witaj oto twoje jendorazowe hasło: ${pass}`);
+          mailManager.sendMail(email, `Reset hasła na koncie`, `Witaj oto twoje jendorazowe hasło: ${pass}`);
 
           resolve(`Password for user: ${email} reset`);
         } else {

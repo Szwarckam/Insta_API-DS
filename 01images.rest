@@ -22,7 +22,7 @@ GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filt
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzQwNTg0ODg2MCwiaWF0IjoxNzE3NDA1ODQ4LCJleHAiOjE3MTc0OTIyNDh9.laoSYMFq2R-mdeh-WadQX6m-6kyGV0PrPreNJ2j_-kU
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzUxMjIxODEzMCwiaWF0IjoxNzE3NTEyMjE4LCJleHAiOjE3MTc1OTg2MTh9.jNTXLC_xqBCeR8WofMYzsdML6FqjbHLuhCMWB2bs3Ws
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
@@ -36,7 +36,9 @@ Content-Type: image/png
 ###GET - pobiera zdjęcie profilowe użytkownika
 GET http://localhost:3000/api/getimage/profile/admin@insta.pl
 
-
+###GET - pobranie danych profilu 
+GET http://localhost:3000/api/profile HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
 ### DELETE - usuń wg id
 DELETE http://localhost:3000/api/photos/d4647a30-4f24-4c91-9e2d-a616fa2b129e HTTP/1.1
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg

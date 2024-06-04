@@ -9,8 +9,25 @@ import formidable from "formidable";
 import fs from "fs";
 const __dirname = path.resolve();
 const profileController = {
-  getProfileData: (email) => {
+  getMyProfileData: (email) => {
     // console.log(data);
+    return new Promise(async (resolve, reject) => {
+      const user = users.find((el) => el.email == email);
+      if (user) {
+        if (user.auth) {
+          const data = user.getProfileData();
+
+          resolve(data);
+        } else {
+          reject("Authorize your account first");
+        }
+      } else {
+        console.log("błąd");
+        reject(`User with ${email} doesn't exists.`);
+      }
+    });
+  },
+  getProfileData: (email) => {
     return new Promise(async (resolve, reject) => {
       const user = users.find((el) => el.email == email);
       if (user) {

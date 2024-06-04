@@ -11,8 +11,12 @@ GET http://localhost:3000/api/logout HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzM4MzE5MjcsImlhdCI6MTcxNjczMzgzMSwiZXhwIjoxNzE2ODIwMjMxfQ.6NvzGLoCPRkkW-0SUYSR1OmJlTekLHyYBlccZccEnPQ
 
 ###GET - pobranie danych profilu
+GET http://localhost:3000/api/profile/admin@insta.pl HTTP/1.1
+
+
+###GET - pobranie myProfile
 GET http://localhost:3000/api/profile HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzUxMDUwMTAyMiwiaWF0IjoxNzE3NTEwNTAxLCJleHAiOjE3MTc1OTY5MDF9.zNVYOrR0HPtavmbatVm1CN1sCVQsVL3ATq5z2QsUSms
 ### POST - rejestracja użytkownika
 POST http://localhost:3000/api/user/register HTTP/1.1
 content-type: application/json
@@ -52,7 +56,7 @@ POST http://localhost:3000/api/user/resetpass HTTP/1.1
 
 ###PATCH - aktualizuje profil użytkownika
 PATCH http://localhost:3000/api/profile HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAc3p3YXJja2FtLmN0OC5wbCIsInRpbWUiOjE3MTY3MzMwMDg5NTYsImlhdCI6MTcxNjczMzAwOCwiZXhwIjoxNzE2ODE5NDA4fQ.uH9tYonlob44QmEZBUFQ3aFTF88LS0qMCQX3dw5T7mU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzQwNTg0ODg2MCwiaWF0IjoxNzE3NDA1ODQ4LCJleHAiOjE3MTc0OTIyNDh9.laoSYMFq2R-mdeh-WadQX6m-6kyGV0PrPreNJ2j_-kU
 
 {
  "name": "Kamil",
