@@ -10,7 +10,9 @@ import "dotenv/config";
 
 createServer(async (req, res) => {
   //images
-
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Request-Method", "*");
   res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PATCH, PUT, DELETE");

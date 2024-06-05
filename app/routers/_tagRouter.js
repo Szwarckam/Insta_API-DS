@@ -7,24 +7,25 @@ import getRequestData from "../utils.js";
 import tokenManager from "../auth.js";
 import tagsController from "../controllers/03TAGScontroller.js";
 const tagRouter = async (request, response) => {
-  if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
-    // czytam dane z nagłowka
-    let token = request.headers.authorization.split(" ")[1];
-    console.log(token);
-    console.log(tokenManager.verifyToken(token));
-    if (tokenManager.verifyToken(token) && !tokenManager.invalidTokens.includes(token)) {
-      if (request.url.match(/\/api\/tags\/raw$/) && request.method == "GET") {
-        //GET raw tags
-        console.log("Pobierz wszystkie tagi");
-        try {
-          const allRawTags = await tagsController.getAllRaw();
-          console.log(allRawTags);
-          response.writeHead(200, { "Content-Type": "application/json" });
-          response.end(JSON.stringify({ status: 200, length: allRawTags.length, tags: allRawTags }, null, 5));
-        } catch (err) {
-          response.writeHead(404, { "Content-Type": "application/json" });
-          response.end(JSON.stringify({ status: 404, message: err }, null, 5));
-        }
+  if (request.url.match(/\/api\/tags\/raw$/) && request.method == "GET") {
+    //GET raw tags
+    console.log("Pobierz wszystkie tagi");
+    try {
+      const allRawTags = await tagsController.getAllRaw();
+      console.log(allRawTags);
+      response.writeHead(200, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 200, length: allRawTags.length, tags: allRawTags }, null, 5));
+    } catch (err) {
+      response.writeHead(404, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: 404, message: err }, null, 5));
+    }
+  } else {
+    if (request.headers.authorization && request.headers.authorization.startsWith("Bearer")) {
+      // czytam dane z nagłowka
+      let token = request.headers.authorization.split(" ")[1];
+      console.log(token);
+      console.log(tokenManager.verifyToken(token));
+      if (tokenManager.verifyToken(token) && !tokenManager.invalidTokens.includes(token)) {
       } else if (request.url == "/api/tags" && request.method == "GET") {
         //GET all tags
         try {
@@ -86,9 +87,6 @@ const tagRouter = async (request, response) => {
       response.writeHead(403, { "Content-Type": "application/json" });
       response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
     }
-  } else {
-    response.writeHead(403, { "Content-Type": "application/json" });
-    response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
   }
 
   // pozostałe funkcje
