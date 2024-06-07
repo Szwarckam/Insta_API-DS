@@ -34,8 +34,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 content-type: application/json
 
 {
-  "id": "a29e51ee-71c6-4795-a993-08d49463f7fc",    
-  "tags": "#nigger"
+  "id": "cd46aabd-3b02-494a-ba77-35432269445c",    
+  "tags": "#cute"
 }
 
 
@@ -43,11 +43,11 @@ content-type: application/json
 ### PATCH - dodanie wielu tagów  wg id
 
 PATCH  http://localhost:3000/api/photos/tags HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzU5ODY4ODU0NiwiaWF0IjoxNzE3NTk4Njg4LCJleHAiOjE3MTc2ODUwODh9.xgEX7gfsEagjNR5ySWozpUPOzjZRXSU1uK7IduVLy4o
 content-type: application/json
 
 {
-  "id": "44cf080d-f38b-47fc-a806-4a3f979aa08b",    
+  "id": "28b7b098-20a3-4afc-b950-3b2f82898146",    
   "tags": ["#cute", "#test123", "#giga"]
 }
 

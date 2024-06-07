@@ -22,9 +22,9 @@ POST http://localhost:3000/api/user/register HTTP/1.1
 content-type: application/json
 
 {    
-   "name": "Admin",
-   "lastName": "Admin",
-   "email":"admin@insta.pl",
+   "name": "Kamil",
+   "lastName": "Szwar",
+   "email":"user@szwarckam.ct8.pl",
    "password":"zaq1@WSX"
 }
 ### POST - logowanie użytkownika

@@ -3,11 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import createToken from "./auth.js";
 import passManager from "./pass.js";
 class Photo {
-  constructor(album, ogName, url, authorName, authorLastName) {
+  constructor(album, ogName, url, authorName, authorLastName, desc) {
     this.id = uuidv4();
     this.album = album;
     this.originalName = ogName;
     this.url = url;
+    this.authorName = authorName;
+    this.authorLastName = authorLastName;
+    this.desc = desc;
     this.lastChange = "Original";
     this.history = [
       {
@@ -15,10 +18,10 @@ class Photo {
         timestamp: Date.now(),
       },
     ];
-    this.authorName = authorName;
-    this.authorLastName = authorLastName;
+
     this.tags = [];
     this.likes = [];
+
     // this.completed = false;
   }
   remove() {

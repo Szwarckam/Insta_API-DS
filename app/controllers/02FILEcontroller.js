@@ -18,7 +18,7 @@ const fileController = {
       form.parse(data, function (err, fields, files) {
         console.log(fields);
         const albumDirectory = path.join(form.uploadDir, directory);
-
+        const data = JSON.parse(fields.data);
         fs.access(albumDirectory, fs.constants.F_OK, (err) => {
           if (err) {
             fs.mkdir(albumDirectory, { recursive: true }, (err) => {
@@ -31,7 +31,13 @@ const fileController = {
                   if (err) {
                     reject(err);
                   } else {
-                    resolve({ album: directory, name: files.file.name, path: newPath });
+                    resolve({
+                      album: directory,
+                      name: files.file.name,
+                      path: newPath,
+                      desc: data.desc,
+                      filterData: data.data,
+                    });
                   }
                 });
               }
@@ -43,7 +49,13 @@ const fileController = {
               if (err) {
                 reject(err);
               } else {
-                resolve({ album: directory, name: files.file.name, path: newPath });
+                resolve({
+                  album: directory,
+                  name: files.file.name,
+                  path: newPath,
+                  desc: data.desc,
+                  filterData: data.data,
+                });
               }
             });
           }

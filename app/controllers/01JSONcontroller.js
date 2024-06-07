@@ -2,11 +2,11 @@ import { photos, Photo, convertedTags, users } from "../model.js";
 import tagsController from "./03TAGScontroller.js";
 const jsonController = {
   add: (data) => {
-    // console.log(data);
+    console.log(data);
     return new Promise((resolve, reject) => {
       if (!photos.some((el) => el.name == data.name && el.album == data.album)) {
         const author = users.find((el) => el.email == data.album);
-        const newPhoto = new Photo(data.album, data.name, data.path, author.name, author.lastName);
+        const newPhoto = new Photo(data.album, data.name, data.path, author.name, author.lastName, data.desc);
         console.log(newPhoto);
         photos.push(newPhoto);
         console.log(photos);

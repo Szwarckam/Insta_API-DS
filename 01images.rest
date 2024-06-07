@@ -22,14 +22,27 @@ GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filt
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzUxMjIxODEzMCwiaWF0IjoxNzE3NTEyMjE4LCJleHAiOjE3MTc1OTg2MTh9.jNTXLC_xqBCeR8WofMYzsdML6FqjbHLuhCMWB2bs3Ws
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzY4OTc5MjA0NywiaWF0IjoxNzE3Njg5NzkyLCJleHAiOjE3MTc3NzYxOTJ9.iRKyKS04ZhfKzZoM2OzrXS8IQCb14qZHkiSkMXfDrhs
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
 Content-Disposition: form-data; name="file"; filename="input1222.png"
 Content-Type: image/png
 
-< ./logo2.png
+< ./logo.png
+
+------FormBoundary1234
+Content-Disposition: form-data; name="data"
+content-type: application/json 
+
+{
+  "desc": "Testowy opis Piekielnie długi opsi zdjęcia do testów aby zobaczyć czy się nie wywala na łeb jak jak kod Stacha ",
+  "filter":"reformat",
+  "size": {"w": 100, "h": 100, "l": 100, "t": 100},
+  "color": {"r": 0 ,"g": 0, "b": 255},
+  "format": "avif",
+  "angle": 90  
+}
 
 ------FormBoundary1234
 
