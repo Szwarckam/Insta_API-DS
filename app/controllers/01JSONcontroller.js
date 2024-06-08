@@ -6,9 +6,10 @@ const jsonController = {
     return new Promise((resolve, reject) => {
       if (!photos.some((el) => el.name == data.name && el.album == data.album)) {
         const author = users.find((el) => el.email == data.album);
-        const newPhoto = new Photo(data.album, data.name, data.path, author.name, author.lastName, data.desc);
+        const newPhoto = new Photo(data.id, data.album, data.name, data.path, author.name, author.lastName, data.desc);
         console.log(newPhoto);
         photos.push(newPhoto);
+        jsonController.updateTag({ id: data.id, tags: data.tags });
         console.log(photos);
         resolve(newPhoto);
       } else {
@@ -107,7 +108,7 @@ const jsonController = {
       if (photo) {
         if (Array.isArray(tags)) {
           for (let tag of tags) {
-            tag = tag[0] == "#" ? tag : `#${tag}`;
+            tag = tag[0] == "#" ? tag.trim() : `#${tag}`.trim();
             if (convertedTags.find((el) => el.name == tag)) {
               if (!photo.tags.find((el) => el.name == tag)) {
                 photo.addTag(tag);

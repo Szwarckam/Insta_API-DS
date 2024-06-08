@@ -43,11 +43,11 @@ content-type: application/json
 ### PATCH - dodanie wielu tagów  wg id
 
 PATCH  http://localhost:3000/api/photos/tags HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzU5ODY4ODU0NiwiaWF0IjoxNzE3NTk4Njg4LCJleHAiOjE3MTc2ODUwODh9.xgEX7gfsEagjNR5ySWozpUPOzjZRXSU1uK7IduVLy4o
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzg0MTgwNzUzNywiaWF0IjoxNzE3ODQxODA3LCJleHAiOjE3MTc5MjgyMDd9.wjC0vUoCaND5RSiy2ENpaJXc_5O2uT9l3k52UV2IF5c
 content-type: application/json
 
 {
-  "id": "28b7b098-20a3-4afc-b950-3b2f82898146",    
+  "id": "50dc00e2-bc06-4445-b25c-b04c817df314",    
   "tags": ["#cute", "#test123", "#giga"]
 }
 

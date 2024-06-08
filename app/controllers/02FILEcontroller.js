@@ -2,8 +2,11 @@ import { photos, Photo, users } from "../model.js";
 import formidable from "formidable";
 import { log } from "console";
 import path, { join } from "path";
+import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
+import jsonController from "./01JSONcontroller.js";
 const __dirname = path.resolve();
+
 const fileController = {
   add: (data, directory) => {
     // console.log(data);
@@ -18,7 +21,16 @@ const fileController = {
       form.parse(data, function (err, fields, files) {
         console.log(fields);
         const albumDirectory = path.join(form.uploadDir, directory);
-        const data = JSON.parse(fields.data);
+        const desc = fields.desc;
+        console.log(fields.title);
+        const title = fields.title;
+        const tags = fields.tags.split(",");
+        console.log(tags);
+        // for (const tag of fields.tags) {
+        //   tags.push()
+        // }
+        const id = uuidv4();
+
         fs.access(albumDirectory, fs.constants.F_OK, (err) => {
           if (err) {
             fs.mkdir(albumDirectory, { recursive: true }, (err) => {
@@ -32,11 +44,13 @@ const fileController = {
                     reject(err);
                   } else {
                     resolve({
+                      id: id,
                       album: directory,
-                      name: files.file.name,
+                      name: title,
                       path: newPath,
-                      desc: data.desc,
-                      filterData: data.data,
+                      desc: desc,
+                      tags: tags,
+                      // filterData: data.data,
                     });
                   }
                 });
@@ -50,11 +64,13 @@ const fileController = {
                 reject(err);
               } else {
                 resolve({
+                  id: id,
                   album: directory,
-                  name: files.file.name,
+                  name: title,
                   path: newPath,
-                  desc: data.desc,
-                  filterData: data.data,
+                  desc: desc,
+                  tags: tags,
+                  // filterData: data.data,
                 });
               }
             });

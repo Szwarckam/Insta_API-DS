@@ -6,14 +6,14 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQ
 
 ### PATCH /api/filters
 PATCH  http://localhost:3000/api/filters HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzg0MTgwNzUzNywiaWF0IjoxNzE3ODQxODA3LCJleHAiOjE3MTc5MjgyMDd9.wjC0vUoCaND5RSiy2ENpaJXc_5O2uT9l3k52UV2IF5c
 content-type: application/json
 
 {   
-  "id":"a9820700-7789-4a8a-af1a-5d42fe651964",
-  "filter":"reformat",
+  "id":"e5dc3b8a-5587-4e00-b080-97e62e2cb2c8",
+  "filter":"rotate",
   "size": {"w": 100, "h": 100, "l": 100, "t": 100},
   "color": {"r": 0 ,"g": 0, "b": 255},
   "format": "avif",
-  "angle": 90  
+  "angle": 95
 }

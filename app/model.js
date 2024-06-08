@@ -1,10 +1,11 @@
 import { FORMERR } from "dns";
 import { v4 as uuidv4 } from "uuid";
+
 import createToken from "./auth.js";
 import passManager from "./pass.js";
 class Photo {
-  constructor(album, ogName, url, authorName, authorLastName, desc) {
-    this.id = uuidv4();
+  constructor(id, album, ogName, url, authorName, authorLastName, desc) {
+    this.id = id;
     this.album = album;
     this.originalName = ogName;
     this.url = url;

@@ -14,7 +14,7 @@ GET http://localhost:3000/api/getimage/97d87297-746f-4de9-bc93-8eb97c403c02  HTT
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 ### GET - pobranie przefiltrowanego zdjęcia z serwera wg id
-GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filter/reformat  HTTP/1.1
+GET http://localhost:3000/api/getimage/e5dc3b8a-5587-4e00-b080-97e62e2cb2c8/filter/rotate  HTTP/1.1
 # authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUzQGVtYWlsLnBsIiwidGltZSI6MTcxNTQyOTUzODUyNiwiaWF0IjoxNzE1NDI5NTM4LCJleHAiOjE3MTU1MTU5Mzh9.9pIdbuL1UVQk1ubf3dy30-DSluT0Ldlef5pOQsf6xCg
 
 
@@ -22,7 +22,7 @@ GET http://localhost:3000/api/getimage/c132f5ea-f480-4aae-98cd-c4385aae8aed/filt
 
 # POST http://localhost:3000/api/ HTTP/1.1
 POST http://localhost:3000/api/photos HTTP/1.1
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzY4OTc5MjA0NywiaWF0IjoxNzE3Njg5NzkyLCJleHAiOjE3MTc3NzYxOTJ9.iRKyKS04ZhfKzZoM2OzrXS8IQCb14qZHkiSkMXfDrhs
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGluc3RhLnBsIiwidGltZSI6MTcxNzg0MTgwNzUzNywiaWF0IjoxNzE3ODQxODA3LCJleHAiOjE3MTc5MjgyMDd9.wjC0vUoCaND5RSiy2ENpaJXc_5O2uT9l3k52UV2IF5c
 Content-Type: multipart/form-data; boundary=----FormBoundary1234
 
 ------FormBoundary1234
@@ -36,12 +36,7 @@ Content-Disposition: form-data; name="data"
 content-type: application/json 
 
 {
-  "desc": "Testowy opis Piekielnie długi opsi zdjęcia do testów aby zobaczyć czy się nie wywala na łeb jak jak kod Stacha ",
-  "filter":"reformat",
-  "size": {"w": 100, "h": 100, "l": 100, "t": 100},
-  "color": {"r": 0 ,"g": 0, "b": 255},
-  "format": "avif",
-  "angle": 90  
+  "desc": "Zdjęcie przedstawia malowniczy krajobraz górski, który rozciąga się na horyzoncie w nieskończoność, oferując zapierający dech w piersiach widok. W centrum kadru dominują majestatyczne szczyty, pokryte śniegiem, który lśni w blasku słońca, tworząc niesamowite refleksy świetlne. W niższych partiach gór widoczne są gęste lasy iglaste, z drzewami tak wysokimi, że zdają się sięgać nieba. Ich intensywna zieleń kontrastuje z bielą szczytów, tworząc harmonię kolorystyczną, która przyciąga wzrok.Na pierwszym planie widać krystalicznie czysty strumień, który meandruje przez dolinę, przecinając łąki pełne kwitnących kwiatów w różnych odcieniach - od intensywnego fioletu, przez jaskrawą żółć, aż po delikatny róż. Woda w strumieniu jest tak przezroczysta, że można dostrzec kamienie na dnie oraz ryby, które leniwie płyną z prądem. Wzdłuż brzegów strumienia rosną bujne paprocie i dzikie rośliny, dodając scenerii dzikości i naturalnego piękna."
 }
 
 ------FormBoundary1234

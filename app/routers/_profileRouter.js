@@ -70,12 +70,12 @@ const profileRouter = async (request, response) => {
           response.end(JSON.stringify({ status: "404", message: `Invalid root` }));
         }
       } else {
-        response.writeHead(403, { "Content-Type": "application/json" });
-        response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
+        response.writeHead(401, { "Content-Type": "application/json" });
+        response.end(JSON.stringify({ status: "401", message: `Unauthorized` }));
       }
     } else {
-      response.writeHead(403, { "Content-Type": "application/json" });
-      response.end(JSON.stringify({ status: "403", message: `Unauthorized` }));
+      response.writeHead(401, { "Content-Type": "application/json" });
+      response.end(JSON.stringify({ status: "401", message: `Unauthorized` }));
     }
   }
 

@@ -100,7 +100,14 @@ const filtersController = {
             resolve(photoToFilter);
             break;
           case "tint":
-            if (data.color?.r >= 0 && data.color?.b >= 0 && data.color?.g >= 0) {
+            if (
+              data.color?.r >= 0 &&
+              data.color?.b >= 0 &&
+              data.color?.g >= 0 &&
+              data.color?.r <= 255 &&
+              data.color?.g <= 255 &&
+              data.color?.b <= 255
+            ) {
               await sharp(photoToFilter.url)
                 .tint({ r: data.color.r, g: data.color.g, b: data.color.b })
                 .toFile(newPath);
