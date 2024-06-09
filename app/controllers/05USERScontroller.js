@@ -67,7 +67,11 @@ const usersController = {
           // console.log(checkPass);
           if (checkPass) {
             const token = await tokenManager.createToken(user.email);
-            resolve(`Bearer ${token}`);
+            if (user.forceToChangePass) {
+              resolve({ token: `Bearer ${token}`, changePass: true });
+            } else {
+              resolve(`Bearer ${token}`);
+            }
           } else {
             reject("Invalid email or password");
           }
@@ -103,6 +107,7 @@ const usersController = {
             if (checkPass) {
               const pass = await passManager.encryptPass(newPassword);
               user.password = pass;
+              user.forceToChangePass = false;
               mailManager.sendMail(email, "Zmiana hasła na instagramie", `Ktoś zmienił twoje hasło na koncie`);
               resolve(`Password for user: ${email} changed.`);
             } else {
