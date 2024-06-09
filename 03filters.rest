@@ -10,8 +10,8 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQ
 content-type: application/json
 
 {   
-  "id":"e5dc3b8a-5587-4e00-b080-97e62e2cb2c8",
-  "filter":"rotate",
+  "id":"8c7d2a9d-0ff3-4f12-ba74-a2879b92528b",
+  "filter":"negate",
   "size": {"w": 100, "h": 100, "l": 100, "t": 100},
   "color": {"r": 0 ,"g": 0, "b": 255},
   "format": "avif",

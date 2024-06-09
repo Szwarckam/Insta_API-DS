@@ -82,11 +82,11 @@ const jsonController = {
   getAll: () => {
     return new Promise((resolve, reject) => {
       // console.log(photos.length);
-      if (photos.length > 0) {
-        resolve(photos);
-      } else {
-        reject("Array is emptey");
-      }
+      // if (photos.length > 0) {
+      resolve(photos);
+      // } else {
+      //   reject("Array is emptey");
+      // }
     });
   },
   getOne: (id) => {

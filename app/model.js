@@ -29,6 +29,9 @@ class Photo {
     photos = photos.filter((el) => el.id != this.id);
   }
   updateHistory(status, url) {
+    if (this.history.find((el) => el.status == status)) {
+      status = status + "_" + Date.now();
+    }
     this.lastChange = status;
     this.history.push({ status: status, timestamp: Date.now(), url: url });
   }
